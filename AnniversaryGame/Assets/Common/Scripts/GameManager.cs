@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
                 GameObject obj = new GameObject("GameManager");
                 obj.AddComponent<GameManager>();
                 instance = obj.GetComponent<GameManager>();
-                DontDestroyOnLoad(obj);
             }
             return instance;
         }

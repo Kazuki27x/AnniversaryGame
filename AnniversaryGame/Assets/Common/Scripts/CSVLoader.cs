@@ -25,29 +25,5 @@ public class CSVLoader : MonoBehaviour
 		}
 
 		return tmpList;
-
-
-		/*
-			FileStream DataFile = new FileStream(path, FileMode.Open, FileAccess.Read);
-        StreamReader DataReader = new StreamReader(DataFile);
-		var data = await LoadCsvAsync(path);
-		//
-		while (DataReader.Peek() != -1)                                                                     // ■ファイルの最後まで繰返
-		{                                                                                                   // │
-			string LineData = DataReader.ReadLine();                                                        // ├【変数定義】武器データ１行だけ（１行だけ読込）
-			string[] LineSplit = LineData.Split(',');                                                       // ├【   〃   】武器データを，記号で分割して配列化
-																											// │
-			bName[ix] = LineSplit[0];                                                                       // ├ 配列に代入 武器名称
-			bKouka[ix] = int.Parse(LineSplit[1]);                                                           // ├ 　　〃　　 武器効果(数字化)
-			bKaine[ix] = int.Parse(LineSplit[2]);                                                           // ├ 　　〃　　 買値　　(　〃　)
-			bUrine[ix] = int.Parse(LineSplit[3]);                                                           // ├ 　　〃　　 売値　　(　〃　)
-			bSoubi1[ix] = int.Parse(LineSplit[4]);                                                          // ├ 　　〃　　 ローレ装(　〃　)
-			bSoubi2[ix] = int.Parse(LineSplit[5]);                                                          // ├ 　　〃　　 サマル装(　〃　)
-			bSoubi3[ix] = int.Parse(LineSplit[6]);                                                          // ├ 　　〃　　 ムーン装(　〃　)
-			bBikou[ix] = LineSplit[7];                                                                      // ├ 　　〃　　 備考
-			ix++;                                                                                           // └ 配列用添字 +1
-		}                                                                                                   //
-		DataReader.Close();
-		*/
 	}
 }

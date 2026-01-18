@@ -18,10 +18,6 @@ public class KeyItemManager : MonoBehaviour
             m_memorieNumber = memorieNumber;
             m_kind = kind;
             m_resourcePath = resourcePath;
-            Debug.Log(m_stage);
-            Debug.Log(m_memorieNumber);
-            Debug.Log(m_kind);
-            Debug.Log(m_resourcePath);
         }
     }
 

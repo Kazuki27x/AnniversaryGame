@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public abstract class BaseScene : MonoBehaviour
 {
     // Start is called before the first frame update
     private async UniTaskVoid Start()
     {
+        var token = this.GetCancellationTokenOnDestroy();
         InitializeAsync();
-        OnSceneReadyAsync();
+        OnSceneReadyAsync(token);
     }
 
     // 例：BGM マネージャーのセットアップ、UI の共通初期化など
@@ -19,5 +21,5 @@ public abstract class BaseScene : MonoBehaviour
         return UniTask.CompletedTask;
     }
 
-    protected abstract UniTask OnSceneReadyAsync();
+    protected abstract UniTask OnSceneReadyAsync(CancellationToken token);
 }
