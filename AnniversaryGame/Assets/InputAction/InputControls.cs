@@ -24,6 +24,78 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     ""name"": ""InputControls"",
     ""maps"": [
         {
+            ""name"": ""Player"",
+            ""id"": ""c8d89ad7-95dc-46b2-915c-a2b244b8e5a2"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fd997f8-5d5b-4cf0-8a29-0e16b5a8b6fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""19af6142-0bf2-41f0-b605-e44936635e43"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""150da7aa-e32f-4c7b-9b8a-4fd3718f977e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6f78e8cb-7356-47ef-b0e7-ba66d49364d6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7e8f4114-bb30-4c32-bb06-4af4c670526a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""38051ced-041e-4fc9-ae88-17300c163bed"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
             ""name"": ""Title"",
             ""id"": ""dfe85c7c-991b-48a1-a6ef-d44e0a4594f3"",
             ""actions"": [
@@ -54,6 +126,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         // Title
         m_Title = asset.FindActionMap("Title", throwIfNotFound: true);
         m_Title_PushStart = m_Title.FindAction("PushStart", throwIfNotFound: true);
@@ -113,6 +188,39 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Move;
+    public struct PlayerActions
+    {
+        private @InputControls m_Wrapper;
+        public PlayerActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
+        {
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+            }
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+
     // Title
     private readonly InputActionMap m_Title;
     private ITitleActions m_TitleActionsCallbackInterface;
@@ -145,6 +253,10 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         }
     }
     public TitleActions @Title => new TitleActions(this);
+    public interface IPlayerActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+    }
     public interface ITitleActions
     {
         void OnPushStart(InputAction.CallbackContext context);
