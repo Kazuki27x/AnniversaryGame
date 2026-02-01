@@ -1,0 +1,34 @@
+{
+    "name": "InputControls",
+    "maps": [
+        {
+            "name": "Title",
+            "id": "dfe85c7c-991b-48a1-a6ef-d44e0a4594f3",
+            "actions": [
+                {
+                    "name": "PushStart",
+                    "type": "Button",
+                    "id": "5dccdf11-a490-4b81-b22d-45bd61df4e7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d02d0bc3-4ded-4ff2-b093-b76fa1d0fd6c",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

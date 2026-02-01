@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public abstract class BaseScene : MonoBehaviour
 {
@@ -22,4 +23,9 @@ public abstract class BaseScene : MonoBehaviour
     }
 
     protected abstract UniTask OnSceneReadyAsync(CancellationToken token);
+
+    protected void GotoNextScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }

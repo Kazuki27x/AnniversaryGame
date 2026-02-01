@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     // マネージャー変数
+    public InputControls _InputControls { get; private set; }
     [NonSerialized] public CSVLoader _CSVLoader;
     [NonSerialized] public KeyItemManager _KeyItemManager;
 
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
     private async UniTask InitializeAsync()
     {
         // 初期化
+        _InputControls = new InputControls();
+        _InputControls.Enable();
         _CSVLoader = new CSVLoader();
         _KeyItemManager = new KeyItemManager();
 
