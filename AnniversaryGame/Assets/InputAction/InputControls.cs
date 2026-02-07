@@ -122,6 +122,34 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TextWindow"",
+            ""id"": ""b9805a93-ed1e-4450-81e6-2e1df1faa27c"",
+            ""actions"": [
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""075110f3-33b1-4def-9069-c4bb789ddffb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""716cd084-1cce-4744-8601-fa0985af3e0d"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -132,6 +160,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         // Title
         m_Title = asset.FindActionMap("Title", throwIfNotFound: true);
         m_Title_PushStart = m_Title.FindAction("PushStart", throwIfNotFound: true);
+        // TextWindow
+        m_TextWindow = asset.FindActionMap("TextWindow", throwIfNotFound: true);
+        m_TextWindow_Skip = m_TextWindow.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -253,6 +284,39 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         }
     }
     public TitleActions @Title => new TitleActions(this);
+
+    // TextWindow
+    private readonly InputActionMap m_TextWindow;
+    private ITextWindowActions m_TextWindowActionsCallbackInterface;
+    private readonly InputAction m_TextWindow_Skip;
+    public struct TextWindowActions
+    {
+        private @InputControls m_Wrapper;
+        public TextWindowActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Skip => m_Wrapper.m_TextWindow_Skip;
+        public InputActionMap Get() { return m_Wrapper.m_TextWindow; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TextWindowActions set) { return set.Get(); }
+        public void SetCallbacks(ITextWindowActions instance)
+        {
+            if (m_Wrapper.m_TextWindowActionsCallbackInterface != null)
+            {
+                @Skip.started -= m_Wrapper.m_TextWindowActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_TextWindowActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_TextWindowActionsCallbackInterface.OnSkip;
+            }
+            m_Wrapper.m_TextWindowActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+            }
+        }
+    }
+    public TextWindowActions @TextWindow => new TextWindowActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -260,5 +324,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     public interface ITitleActions
     {
         void OnPushStart(InputAction.CallbackContext context);
+    }
+    public interface ITextWindowActions
+    {
+        void OnSkip(InputAction.CallbackContext context);
     }
 }

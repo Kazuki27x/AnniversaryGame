@@ -100,6 +100,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TextWindow",
+            "id": "b9805a93-ed1e-4450-81e6-2e1df1faa27c",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "075110f3-33b1-4def-9069-c4bb789ddffb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "716cd084-1cce-4744-8601-fa0985af3e0d",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

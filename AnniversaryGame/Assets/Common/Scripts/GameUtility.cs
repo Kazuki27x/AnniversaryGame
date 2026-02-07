@@ -7,6 +7,9 @@ using UnityEngine;
  */
 public static class GameUtility
 {
+    public const string PLAYER_NAME = "コウペンちゃん";
+    public const string NARRATION_NAME = "神様コウペンちゃん";
+
     public enum Stage
     {
         Stage0 = 0,
