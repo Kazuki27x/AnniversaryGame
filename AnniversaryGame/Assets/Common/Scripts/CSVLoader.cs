@@ -5,7 +5,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
-public class CSVLoader : MonoBehaviour
+public class CSVLoader
 {
     public async UniTask<List<KeyItemManager.KeyItemBase>> LoadCSVAsync(string address, CancellationToken token)
 	{
