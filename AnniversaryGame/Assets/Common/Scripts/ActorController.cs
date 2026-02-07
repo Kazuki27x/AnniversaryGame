@@ -22,8 +22,8 @@ public class ActorController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 move = new Vector3(moveInput.x, 0, 0); 
-        transform.Translate(move * speed * Time.deltaTime);
+        Vector3 move = new Vector3(moveInput.x, 0, 0);
+        GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * speed * Time.fixedDeltaTime);
     }
 
     private System.IDisposable SetInputAction()
