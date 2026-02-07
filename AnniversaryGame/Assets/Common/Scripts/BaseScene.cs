@@ -7,12 +7,41 @@ using UnityEngine.SceneManagement;
 
 public abstract class BaseScene : MonoBehaviour
 {
+    protected ResidentScene m_ResidentScene;
+    private const string NAME_RESIDENT_SCENE = "ResidentScene";
+
     // Start is called before the first frame update
     private async UniTaskVoid Start()
     {
         var token = this.GetCancellationTokenOnDestroy();
-        InitializeAsync();
-        OnSceneReadyAsync(token);
+        bool isExistResident = false;
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (SceneManager.GetSceneAt(i).name.Equals(NAME_RESIDENT_SCENE))
+            {
+                isExistResident = true;
+            }
+        }
+        if (!isExistResident)
+        {
+            SceneManager.LoadScene(NAME_RESIDENT_SCENE, LoadSceneMode.Additive);
+        }
+
+        var scene = SceneManager.GetSceneByName(NAME_RESIDENT_SCENE);
+        await UniTask.WaitUntil(() => scene.isLoaded);
+        if (scene.isLoaded)
+        {
+            foreach (var root in scene.GetRootGameObjects()) 
+            { 
+                if (root.name == "ResidentFlow")
+                {
+                    m_ResidentScene = root.GetComponent<ResidentScene>();
+                }
+            }
+        }
+
+        await InitializeAsync();
+        await OnSceneReadyAsync(token);
     }
 
     // 例：BGM マネージャーのセットアップ、UI の共通初期化など

@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class ResidentScene : MonoBehaviour
+public class ResidentScene : BaseScene
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private TextWindow m_textWindow;
+
+    protected override async UniTask OnSceneReadyAsync(CancellationToken token)
     {
-        
+        // ƒV[ƒ“‹N“®‚Ìˆ—
     }
 
-    // Update is called once per frame
-    void Update()
+    public async UniTask StartTextWindow(List<TextContentData> list, CancellationToken token)
     {
-        
+        m_textWindow.SetTextContents(list);
+        await m_textWindow.PlayTextWindow(token);
     }
 }

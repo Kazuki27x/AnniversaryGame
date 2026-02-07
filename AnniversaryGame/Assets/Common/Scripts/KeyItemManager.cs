@@ -4,7 +4,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
-public class KeyItemManager : MonoBehaviour
+public class KeyItemManager
 {
     public struct KeyItemBase
     {
