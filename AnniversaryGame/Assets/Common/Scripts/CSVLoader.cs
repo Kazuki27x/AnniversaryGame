@@ -7,7 +7,27 @@ using System.Threading;
 
 public class CSVLoader
 {
-    public async UniTask<List<KeyItemManager.KeyItemBase>> LoadCSVAsync(string address, CancellationToken token)
+	public async UniTask<List<TextContentData>> LoadStoryCSVAsync(string address, CancellationToken token)
+	{
+		TextAsset textAsset = await AddressableAssetLoadUtility.LoadAssetAsync<TextAsset>(address, token);
+		var lines = textAsset.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+		List<TextContentData> tmpList = new List<TextContentData>();
+		foreach (var line in lines)
+		{
+			string[] LineSplit = line.Split(',');
+			TextContentData tmpData = new TextContentData(
+				(GameUtility.SpeakPlayer)int.Parse(LineSplit[0]),
+				(GameUtility.Emotion)int.Parse(LineSplit[1]),
+				LineSplit[2],
+				LineSplit[3]);
+			tmpList.Add(tmpData);
+		}
+
+		return tmpList;
+	}
+
+	public async UniTask<List<KeyItemManager.KeyItemBase>> LoadCSVAsync(string address, CancellationToken token)
 	{
 		TextAsset textAsset = await AddressableAssetLoadUtility.LoadAssetAsync<TextAsset>(address, token);
 		var lines = textAsset.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);

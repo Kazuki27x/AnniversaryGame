@@ -35,20 +35,11 @@ public class TextWindow : MonoBehaviour
     private CancellationToken m_token;
 
     // Start is called before the first frame update
-    async void Start()
+    void Start()
     {
         m_token = this.GetCancellationTokenOnDestroy();
         // スキップボタンの登録
         SetInputAction();
-        // テスト
-        List<TextContentData> testTextList = new List<TextContentData>()
-        {
-            new TextContentData(TextContentData.SpeakPlayer.Player, TextContentData.Emotion.Normal, "おお～！おおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお", "shibaFront.png"),
-            new TextContentData(TextContentData.SpeakPlayer.Narattion, TextContentData.Emotion.None, "ああ～！あああああああああああああああああああああああああああああああああああああああ", "shibaFront.png"),
-            new TextContentData(TextContentData.SpeakPlayer.Player, TextContentData.Emotion.Smile, "ほほ～！ほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほほ", "shibaFront.png"),
-        };
-        SetTextContents(testTextList);
-        await PlayTextWindow(m_token);
     }
 
     // Update is called once per frame
@@ -136,20 +127,20 @@ public class TextWindow : MonoBehaviour
         // 話し手に合わせて名前やアイコン変更
         switch (m_textList[index].m_speakPlayer)
         {
-            case TextContentData.SpeakPlayer.Player:
+            case GameUtility.SpeakPlayer.Player:
                 {
                     m_nameText.text = GameUtility.PLAYER_NAME;
                     // 表情切り替え
                     string iconAddress = "shibaFront.png";
                     switch (m_textList[index].m_emotion)
                     {
-                        case TextContentData.Emotion.Normal:
+                        case GameUtility.Emotion.Normal:
                             iconAddress = "";
                             break;
-                        case TextContentData.Emotion.Smile:
+                        case GameUtility.Emotion.Smile:
                             iconAddress = "";
                             break;
-                        case TextContentData.Emotion.Surprise:
+                        case GameUtility.Emotion.Surprise:
                             iconAddress = "";
                             break;
                         default: break;
@@ -159,7 +150,7 @@ public class TextWindow : MonoBehaviour
                     m_icon.sprite = ImageAsset;
                 }
                 break;
-            case TextContentData.SpeakPlayer.Narattion:
+            case GameUtility.SpeakPlayer.Narattion:
                 {
                     m_nameText.text = GameUtility.NARRATION_NAME;
                     Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>("shibaFront.png", token);
@@ -200,33 +191,5 @@ public class TextWindow : MonoBehaviour
     public void SkipText(InputAction.CallbackContext context)
     {
         m_isSkip = true;
-    }
-}
-
-public struct TextContentData
-{
-    public enum SpeakPlayer
-    {
-        Player = 0,
-        Narattion = 1,
-    };
-    public enum Emotion
-    {
-        None = -1,
-        Normal = 0,
-        Smile = 1,
-        Surprise = 2,
-    };
-    public SpeakPlayer m_speakPlayer{ get; private set; }
-    public Emotion m_emotion { get; private set; }
-    public string m_mainText{ get; private set; }
-    public string m_photoAddress{ get; private set; }
-
-    public TextContentData(SpeakPlayer speakPlayer, Emotion emotion,string mainText, string photoAddress)
-    {
-        m_speakPlayer = speakPlayer;
-        m_emotion = emotion;
-        m_mainText = mainText;
-        m_photoAddress = photoAddress;
     }
 }
