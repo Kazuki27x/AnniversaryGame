@@ -131,21 +131,20 @@ public class TextWindow : MonoBehaviour
                 {
                     m_nameText.text = GameUtility.PLAYER_NAME;
                     // ï\èÓêÿÇËë÷Ç¶
-                    string iconAddress = "shibaFront.png";
+                    string iconAddress = "koupenchanNormal.PNG";
                     switch (m_textList[index].m_emotion)
                     {
                         case GameUtility.Emotion.Normal:
-                            iconAddress = "";
+                            iconAddress = "koupenchanNormal.PNG";
                             break;
                         case GameUtility.Emotion.Smile:
-                            iconAddress = "";
+                            iconAddress = "koupenchamSmile.PNG";
                             break;
                         case GameUtility.Emotion.Surprise:
-                            iconAddress = "";
+                            iconAddress = "koupenchanSurprise.PNG";
                             break;
                         default: break;
                     }
-                    iconAddress = "shibaFront.png";
                     Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>(iconAddress, token);
                     m_icon.sprite = ImageAsset;
                 }
@@ -153,7 +152,7 @@ public class TextWindow : MonoBehaviour
             case GameUtility.SpeakPlayer.Narattion:
                 {
                     m_nameText.text = GameUtility.NARRATION_NAME;
-                    Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>("shibaFront.png", token);
+                    Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>("koupenchanGod.PNG", token);
                     m_icon.sprite = ImageAsset;
                 }
                 break;
