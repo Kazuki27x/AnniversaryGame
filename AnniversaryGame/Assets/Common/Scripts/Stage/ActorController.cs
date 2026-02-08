@@ -7,6 +7,7 @@ using UniRx;
 public class ActorController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    private SpriteRenderer spriteRenderer;
 
     // キーアクション
     private InputAction _pushMove;
@@ -15,7 +16,7 @@ public class ActorController : MonoBehaviour
 
     private void Start()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // キー操作登録
         SetInputAction().AddTo(this);
     }
@@ -45,10 +46,25 @@ public class ActorController : MonoBehaviour
 
     public void ActionMovePerformed(InputAction.CallbackContext context)
     {
+        // Walk
+        this.GetComponent<Animator>().SetBool("IsWalk", true);
+
         moveInput = context.ReadValue<Vector2>();
+        if (moveInput.x > 0)
+        {
+            // スプライトを通常の向きで表示
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            // スプライトを通常の逆向きで表示
+            spriteRenderer.flipX = true;
+        }
     }
     public void ActionStopCanceled(InputAction.CallbackContext context)
     {
+        // Wait
+        this.GetComponent<Animator>().SetBool("IsWalk", false);
         moveInput = Vector2.zero;
     }
 }
