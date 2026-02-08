@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public abstract class BaseScene : MonoBehaviour
 {
     protected ResidentScene m_ResidentScene;
-    private const string NAME_RESIDENT_SCENE = "ResidentScene";
 
     // Start is called before the first frame update
     private async UniTaskVoid Start()
@@ -17,17 +16,17 @@ public abstract class BaseScene : MonoBehaviour
         bool isExistResident = false;
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
-            if (SceneManager.GetSceneAt(i).name.Equals(NAME_RESIDENT_SCENE))
+            if (SceneManager.GetSceneAt(i).name.Equals(GameUtility.NAME_RESIDENT_SCENE))
             {
                 isExistResident = true;
             }
         }
         if (!isExistResident)
         {
-            SceneManager.LoadScene(NAME_RESIDENT_SCENE, LoadSceneMode.Additive);
+            SceneManager.LoadScene(GameUtility.NAME_RESIDENT_SCENE, LoadSceneMode.Additive);
         }
 
-        var scene = SceneManager.GetSceneByName(NAME_RESIDENT_SCENE);
+        var scene = SceneManager.GetSceneByName(GameUtility.NAME_RESIDENT_SCENE);
         await UniTask.WaitUntil(() => scene.isLoaded);
         if (scene.isLoaded)
         {
@@ -56,5 +55,18 @@ public abstract class BaseScene : MonoBehaviour
     protected void GotoNextScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    // テキストウィンドウ
+    public async UniTask StartTextWindow(string csvFileName, CancellationToken token)
+    {
+        List<TextContentData> tmpList = new List<TextContentData>();
+        tmpList = await GameManager.Instance._CSVLoader.LoadStoryCSVAsync(csvFileName, token);
+        m_ResidentScene.GetTextWindow().SetTextContents(tmpList);
+        await m_ResidentScene.GetTextWindow().PlayTextWindow(token);
+    }
+    public bool isPlayTextWindow()
+    {
+        return m_ResidentScene.GetTextWindow().m_nowPlay;
     }
 }

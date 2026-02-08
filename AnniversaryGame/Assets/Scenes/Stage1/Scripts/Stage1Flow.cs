@@ -26,9 +26,7 @@ public class Stage1Flow : BaseScene
         // 初回ストーリー開始
         if (m_isDispFirstStory)
         {
-            List<TextContentData> tmpList = new List<TextContentData>();
-            tmpList = await GameManager.Instance._CSVLoader.LoadStoryCSVAsync("Stage01Story00.csv", token);
-            await m_ResidentScene.StartTextWindow(tmpList, token);
+            await StartTextWindow("Stage01Story00.csv", token);
         }
     }
 }

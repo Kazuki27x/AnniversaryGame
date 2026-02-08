@@ -14,9 +14,8 @@ public class ResidentScene : BaseScene
         // ƒV[ƒ“‹N“®‚Ìˆ—
     }
 
-    public async UniTask StartTextWindow(List<TextContentData> list, CancellationToken token)
+    public TextWindow GetTextWindow()
     {
-        m_textWindow.SetTextContents(list);
-        await m_textWindow.PlayTextWindow(token);
+        return m_textWindow;
     }
 }
