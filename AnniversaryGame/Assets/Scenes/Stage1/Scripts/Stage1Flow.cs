@@ -12,6 +12,8 @@ public class Stage1Flow : BaseScene
 
     [Header("初回ストーリーCSVファイル名")]
     public string storyFileName = "";
+    [SerializeField, Header("初回ストーリーを表示するか")]
+    private bool m_isDispFirstStory;
 
     // キーアクション
     private InputAction _pushStart;
@@ -22,8 +24,9 @@ public class Stage1Flow : BaseScene
         GameManager.Instance.StageName = "Stage1";
 
         // 初回ストーリー開始
-        List<TextContentData> tmpList = new List<TextContentData>();
-        tmpList = await GameManager.Instance._CSVLoader.LoadStoryCSVAsync("Stage01Story00.csv", token);
-        await m_ResidentScene.StartTextWindow(tmpList, token);
+        if (m_isDispFirstStory)
+        {
+            await StartTextWindow("Stage01Story00.csv", token);
+        }
     }
 }

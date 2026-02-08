@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Story
+  m_Name: Actor
   m_EditorClassIdentifier: 
-  m_GroupName: Story
+  m_GroupName: Actor
   m_Data:
     m_SerializedData: []
-  m_GUID: 45fc75994e18339488dccf46e9d69524
+  m_GUID: 88a24c0e573cb984097df11d2ceb974c
   m_SerializeEntries:
-  - m_GUID: 30b781b5b0155ed4c99bfaa7d91df55e
-    m_Address: koupenchanSurprise.PNG
+  - m_GUID: 155bdd73e18642b4aa28c328ed713059
+    m_Address: koupenchanWalk2.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 366e0cd7d81d29c4fa622c2478740538
-    m_Address: koupenchanNormal.PNG
+  - m_GUID: 20b11746fa69b774d97ec3d2f584fcc3
+    m_Address: koupenchanWalk0.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: baa846a416e9aed498d3f5a9cb19b9f0
-    m_Address: koupenchanGod.PNG
+  - m_GUID: ab1ffa89fae7b82468c61e11698510fd
+    m_Address: koupenchanWait1.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bacc78f42af542f4bbaad3fee3497f26
-    m_Address: Stage01Story00.csv
+  - m_GUID: c57eaf194e3357743b31fe6d2006a1de
+    m_Address: koupenchanWait0.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e2f1fd603f3ad2b41b514b293178b24d
-    m_Address: koupenchamSmile.PNG
+  - m_GUID: e81b62f6b0b865348a517fcd17e4242b
+    m_Address: koupenchanWalk1.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -46,5 +46,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 5dad6a7b3efe5d54ba13109a25d38364, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 19623ccf73a85cf44b1b8bd65a961064, type: 2}
-    - {fileID: 11400000, guid: f7c3a128e90528a4db14d2ec32ec3d3e, type: 2}
+    - {fileID: 11400000, guid: 7525801dc6a0ee54ba8018edd3544ed3, type: 2}
+    - {fileID: 11400000, guid: c2a6d12aec8cf9f47864899d4c7db26a, type: 2}

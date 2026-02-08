@@ -10,6 +10,8 @@ public static class GameUtility
     public const string PLAYER_NAME = "コウペンちゃん";
     public const string NARRATION_NAME = "神様コウペンちゃん";
 
+    public const string NAME_RESIDENT_SCENE = "ResidentScene";
+
     public enum Stage
     {
         Stage0 = 0,
