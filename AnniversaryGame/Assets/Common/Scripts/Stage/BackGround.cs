@@ -17,7 +17,10 @@ public class BackGround : MonoBehaviour
     {
         m_camera = Camera.main.gameObject;
         m_startBgPosX = transform.position.x;
-        m_bgOneLength = transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x;
+        if ((m_parallaxEffect < 1))
+        {
+            m_bgOneLength = transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x;
+        }
         m_startCameraPosX = m_camera.transform.position.x;
     }
 
@@ -36,14 +39,17 @@ public class BackGround : MonoBehaviour
         // 
         transform.position = new Vector3(currentPosX, transform.position.y, transform.position.z);
 
-        // 
-        if (m_camera.transform.position.x - currentPosX > m_bgOneLength)
+        // 背景とカメラの位置が一定数離れたら、背景を移動（ループ用）
+        if (m_parallaxEffect < 1)
         {
-            m_startBgPosX += m_bgOneLength;
-        }
-        else if (m_camera.transform.position.x - currentPosX < -m_bgOneLength)
-        {
-            m_startBgPosX -= m_bgOneLength;
+            if (m_camera.transform.position.x - currentPosX > m_bgOneLength)
+            {
+                m_startBgPosX += m_bgOneLength;
+            }
+            else if (m_camera.transform.position.x - currentPosX < -m_bgOneLength)
+            {
+                m_startBgPosX -= m_bgOneLength;
+            }
         }
 
     }
