@@ -28,5 +28,9 @@ public class Stage1Flow : BaseScene
         {
             await StartTextWindow("Stage01Story00.csv", token);
         }
+
+        // ÉLÅ[ëÄçÏ
+        GameManager.Instance.SetInputSystemAllDisable();
+        GameManager.Instance._InputControls.Player.Enable();
     }
 }

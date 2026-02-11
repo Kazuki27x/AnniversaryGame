@@ -6,7 +6,7 @@ using System.Threading;
 using UnityEngine.InputSystem;
 using UniRx;
 
-public class TitleScene : BaseScene
+public class TitleFlow : BaseScene
 {
     // キーアクション
     private InputAction _pushStart;
@@ -18,6 +18,8 @@ public class TitleScene : BaseScene
         GameManager.Instance.StageName = "StageTitle";
 
         // キー操作登録
+        GameManager.Instance.SetInputSystemAllDisable();
+        GameManager.Instance._InputControls.Title.Enable();
         SetInputAction().AddTo(token);
     }
 

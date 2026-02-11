@@ -96,8 +96,6 @@ public class ActorController : MonoBehaviour
             string storyCSVName = m_inBuildingInfo.storyFileName;
             List<TextContentData> tmpList = new List<TextContentData>();
             await m_scene.StartTextWindow(storyCSVName, m_token);
-            // ストーリー終了待ち
-            await UniTask.WaitUntil(() => !m_scene.isPlayTextWindow());
             // 終了
             ResetBuildInfo();
         }
@@ -113,9 +111,9 @@ public class ActorController : MonoBehaviour
             m_inBuildingInfo = other.gameObject.GetComponent<Building>();
         }
     }
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag.Equals("Building"))
+        if (other.gameObject.tag.Equals("Building"))
         {
             // 建物の場合は情報リセット
             ResetBuildInfo();

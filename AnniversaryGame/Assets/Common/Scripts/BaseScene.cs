@@ -7,38 +7,11 @@ using UnityEngine.SceneManagement;
 
 public abstract class BaseScene : MonoBehaviour
 {
-    protected ResidentScene m_ResidentScene;
 
     // Start is called before the first frame update
     private async UniTaskVoid Start()
     {
         var token = this.GetCancellationTokenOnDestroy();
-        bool isExistResident = false;
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            if (SceneManager.GetSceneAt(i).name.Equals(GameUtility.NAME_RESIDENT_SCENE))
-            {
-                isExistResident = true;
-            }
-        }
-        if (!isExistResident)
-        {
-            SceneManager.LoadScene(GameUtility.NAME_RESIDENT_SCENE, LoadSceneMode.Additive);
-        }
-
-        var scene = SceneManager.GetSceneByName(GameUtility.NAME_RESIDENT_SCENE);
-        await UniTask.WaitUntil(() => scene.isLoaded);
-        if (scene.isLoaded)
-        {
-            foreach (var root in scene.GetRootGameObjects()) 
-            { 
-                if (root.name == "ResidentFlow")
-                {
-                    m_ResidentScene = root.GetComponent<ResidentScene>();
-                }
-            }
-        }
-
         await InitializeAsync();
         await OnSceneReadyAsync(token);
     }
@@ -60,13 +33,22 @@ public abstract class BaseScene : MonoBehaviour
     // テキストウィンドウ
     public async UniTask StartTextWindow(string csvFileName, CancellationToken token)
     {
+        // InputSystemの動作を制限
+        GameManager.Instance._InputControls.Player.Disable();
+        GameManager.Instance._InputControls.TextWindow.Enable();
+        // テキストウィンドウ表示
         List<TextContentData> tmpList = new List<TextContentData>();
         tmpList = await GameManager.Instance._CSVLoader.LoadStoryCSVAsync(csvFileName, token);
-        m_ResidentScene.GetTextWindow().SetTextContents(tmpList);
-        await m_ResidentScene.GetTextWindow().PlayTextWindow(token);
+        GameManager.Instance.m_ResidentFlow.GetTextWindow().SetTextContents(tmpList);
+        await GameManager.Instance.m_ResidentFlow.GetTextWindow().PlayTextWindow(token);
+        // ストーリー終了待ち
+        await UniTask.WaitUntil(() => !isPlayTextWindow());
+        // 終了
+        GameManager.Instance._InputControls.Player.Enable();
+        GameManager.Instance._InputControls.TextWindow.Disable();
     }
     public bool isPlayTextWindow()
     {
-        return m_ResidentScene.GetTextWindow().m_nowPlay;
+        return GameManager.Instance.m_ResidentFlow.GetTextWindow().m_nowPlay;
     }
 }
