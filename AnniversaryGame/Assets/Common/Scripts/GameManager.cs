@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public InputControls _InputControls { get; private set; }
     [NonSerialized] public CSVLoader _CSVLoader;
     [NonSerialized] public KeyItemManager _KeyItemManager;
+    // ResidentScene
+    public ResidentFlow m_ResidentFlow { get; private set; }
 
     // シングルトン定義
     private static GameManager instance;
@@ -21,7 +23,6 @@ public class GameManager : MonoBehaviour
             // 参照時にinstanceの中身がない場合に生成する
             if (instance == null)
             {
-
                 GameObject obj = new GameObject("GameManager");
                 obj.AddComponent<GameManager>();
                 instance = obj.GetComponent<GameManager>();
@@ -57,5 +58,20 @@ public class GameManager : MonoBehaviour
 
         var token = this.GetCancellationTokenOnDestroy();
         await _KeyItemManager.InitAsync(token);
+    }
+
+    public void SetResidentFlow(ResidentFlow flow)
+    {
+        if (m_ResidentFlow == null)
+        {
+            m_ResidentFlow = flow;
+        }
+    }
+
+    public void SetInputSystemAllDisable()
+    {
+        GameManager.Instance._InputControls.Player.Disable();
+        GameManager.Instance._InputControls.TextWindow.Disable();
+        GameManager.Instance._InputControls.Title.Disable();
     }
 }

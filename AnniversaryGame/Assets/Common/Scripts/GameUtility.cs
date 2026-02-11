@@ -28,8 +28,8 @@ public static class GameUtility
     // ストーリー関連
     public enum SpeakPlayer
     {
-        Player = 0,
-        Narattion = 1,
+        Narattion = 0,
+        Player = 1,
     };
     public enum Emotion
     {

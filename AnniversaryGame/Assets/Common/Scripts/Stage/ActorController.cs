@@ -11,6 +11,8 @@ public class ActorController : MonoBehaviour
 {
     [SerializeField] private BaseScene m_scene;
     [SerializeField] private float speed = 5f;
+    [SerializeField] private GameObject m_Manpu;
+
     private SpriteRenderer spriteRenderer;
 
     // キーアクション
@@ -28,11 +30,17 @@ public class ActorController : MonoBehaviour
 
     private void Start()
     {
+        m_token = this.GetCancellationTokenOnDestroy();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         // キー操作登録
         SetInputAction().AddTo(this);
-
-        m_token = this.GetCancellationTokenOnDestroy();
+        // 状態変化による実行
+        /// 建物の入っているかを検知して、アイコンを表示
+        this.ObserveEveryValueChanged(t => t.m_isInBuilding)
+            .Subscribe(value => {
+                DispMark(value); 
+            }).AddTo(this);
     }
 
     private void Update()
@@ -96,9 +104,8 @@ public class ActorController : MonoBehaviour
             string storyCSVName = m_inBuildingInfo.storyFileName;
             List<TextContentData> tmpList = new List<TextContentData>();
             await m_scene.StartTextWindow(storyCSVName, m_token);
-            // ストーリー終了待ち
-            await UniTask.WaitUntil(() => !m_scene.isPlayTextWindow());
             // 終了
+            m_inBuildingInfo.m_isFinishDisp = true;
             ResetBuildInfo();
         }
     }
@@ -109,13 +116,17 @@ public class ActorController : MonoBehaviour
         if (other.gameObject.tag.Equals("Building"))
         {
             // 建物の場合
-            m_isInBuilding = true;
             m_inBuildingInfo = other.gameObject.GetComponent<Building>();
+            if (!m_inBuildingInfo.m_isFinishDisp)
+            {
+                // まだ見ていなければ
+                m_isInBuilding = true;
+            }
         }
     }
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag.Equals("Building"))
+        if (other.gameObject.tag.Equals("Building"))
         {
             // 建物の場合は情報リセット
             ResetBuildInfo();
@@ -125,5 +136,11 @@ public class ActorController : MonoBehaviour
     {
         m_isInBuilding = false;
         m_inBuildingInfo = null;
+    }
+
+    // 未確認ストーリーの検知時ビックリマーク
+    private void DispMark(bool isDisp)
+    {
+        m_Manpu.SetActive(isDisp);
     }
 }
