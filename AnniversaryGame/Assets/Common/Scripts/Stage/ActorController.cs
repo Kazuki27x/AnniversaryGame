@@ -6,11 +6,6 @@ using UniRx;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using System.Threading;
-using UniRx;
-using System;
-using UniRx;
-using UniRx.Triggers;
-using UnityEngine;
 
 public class ActorController : MonoBehaviour
 {

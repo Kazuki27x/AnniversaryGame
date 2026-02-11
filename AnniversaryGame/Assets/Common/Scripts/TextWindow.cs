@@ -26,8 +26,8 @@ public class TextWindow : MonoBehaviour
     private List<TextContentData> m_textList = new List<TextContentData>();
     private string m_currentDispText = "";
     private int m_currntIndex = 0;
-    private bool m_isFinishTextDisp = false;
     private bool m_isSkip = false;
+    private bool m_isFinishTextDisp = false;
     private float textDispTime = 0; // 経過時間に合わせて文字を表示するのに使用
 
     private InputAction _pushSkip;
@@ -52,16 +52,11 @@ public class TextWindow : MonoBehaviour
             {
                 textDispTime += Time.deltaTime;
 
-                // クリックされると一気に表示
-                if (m_isSkip) { 
-                    m_isFinishTextDisp = true;
-                    m_isSkip = false;
-                }
-
                 int len = Mathf.FloorToInt(textDispTime / textSpeed);
-                if (len > m_currentDispText.Length) {
+                if (len > m_currentDispText.Length)
+                {
+                    m_mainText.text = m_currentDispText;
                     m_isFinishTextDisp = true;
-                    m_isSkip = false;
                 }
                 else
                 {
@@ -71,30 +66,7 @@ public class TextWindow : MonoBehaviour
             // テキスト表示が終了している
             else
             {
-                if (!m_mainText.text.Equals(m_currentDispText))
-                {
-                    m_mainText.text = m_currentDispText;
-                }
-
-                // ボタン押下を待つ
-                if (m_isSkip)
-                {
-                    m_currntIndex++;
-                    m_isSkip = false;
-                    if (m_currntIndex >= m_textList.Count)
-                    {
-                        // 終了
-                        m_nowPlay = false;
-                        m_currntIndex = 0;
-                        this.gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        // 次のテキストに進む
-                        await SetTextContent(m_currntIndex, m_token);
-                        textDispTime = 0;
-                    }
-                }
+                // テキスト表示後の処理は、ボタン押下処理に記載されている}
             }
         }
     }
@@ -107,9 +79,9 @@ public class TextWindow : MonoBehaviour
     public async UniTask PlayTextWindow(CancellationToken token)
     {
         m_nowPlay = true;
-        this.gameObject.SetActive(true);
         m_currntIndex = 0;
         await SetTextContent(m_currntIndex, token);
+        this.gameObject.SetActive(true);
     }
 
     private async UniTask SetTextContent(int index, CancellationToken token)
@@ -121,12 +93,18 @@ public class TextWindow : MonoBehaviour
             return;
         }
 
-        m_isFinishTextDisp = false;
         // テキスト変更
         m_currentDispText = m_textList[index].m_mainText;
         // 話し手に合わせて名前やアイコン変更
         switch (m_textList[index].m_speakPlayer)
         {
+            case GameUtility.SpeakPlayer.Narattion:
+                {
+                    m_nameText.text = GameUtility.NARRATION_NAME;
+                    Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>("koupenchanGod.PNG", token);
+                    m_icon.sprite = ImageAsset;
+                }
+                break;
             case GameUtility.SpeakPlayer.Player:
                 {
                     m_nameText.text = GameUtility.PLAYER_NAME;
@@ -149,26 +127,31 @@ public class TextWindow : MonoBehaviour
                     m_icon.sprite = ImageAsset;
                 }
                 break;
-            case GameUtility.SpeakPlayer.Narattion:
-                {
-                    m_nameText.text = GameUtility.NARRATION_NAME;
-                    Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>("koupenchanGod.PNG", token);
-                    m_icon.sprite = ImageAsset;
-                }
-                break;
         }
         // 写真があれば表示
-        if (!m_textList[index].m_photoAddress.Equals(""))
+        if (m_textList[index].m_photoAddress.Equals("="))
+        {
+            // 同じ画像を表示
+            m_photo.enabled = true;
+        }
+        else if (!m_textList[index].m_photoAddress.Equals(""))
         {
             Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>(m_textList[index].m_photoAddress, token);
             if (ImageAsset != null)
             {
                 m_photo.sprite = ImageAsset;
+                m_photo.enabled = true;
             }
             else
             {
                 Debug.Log($"指定したindexの写真addressはありません。index：{index},,m_photoAddress：{m_textList[index].m_photoAddress}");
+                m_photo.enabled = false;
             }
+        }
+        else
+        {
+            // 画像非表示
+            m_photo.enabled = false;
         }
     }
 
@@ -187,8 +170,41 @@ public class TextWindow : MonoBehaviour
         });
     }
 
-    public void SkipText(InputAction.CallbackContext context)
+    public async void SkipText(InputAction.CallbackContext context)
     {
-        m_isSkip = true;
+        if (m_nowPlay && !m_isSkip)
+        {
+            m_isSkip = true;
+
+            // テキスト表示が終了していない
+            if (!m_isFinishTextDisp)
+            {
+                // 一気に表示
+                m_mainText.text = m_currentDispText;
+                m_isFinishTextDisp = true;
+                m_isSkip = false;
+            }
+            else
+            {
+                // テキスト表示が終了している
+                m_currntIndex++;
+                if (m_currntIndex >= m_textList.Count)
+                {
+                    // 終了
+                    m_nowPlay = false;
+                    m_currntIndex = 0;
+                    this.gameObject.SetActive(false);
+                }
+                else
+                {
+                    // 次のテキストに進む
+                    await SetTextContent(m_currntIndex, m_token);
+                }
+                m_isFinishTextDisp = false;
+                textDispTime = 0;
+                m_mainText.text = "";
+                m_isSkip = false;
+            }
+        }
     }
 }
