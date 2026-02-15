@@ -17,6 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 30bf3e0eaee1eab4da80196cd0bb07c5
   m_SerializeEntries:
+  - m_GUID: 16c21bd81db7c2440898d95d16c5736f
+    m_Address: IMG_0931_exported_17033.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 221fca8ace0b1ce4facbeacca84caf29
+    m_Address: IMG_0925_exported_2217.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5209bda16621cad4282b0c69c36de482
     m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0860.png
     m_ReadOnly: 0

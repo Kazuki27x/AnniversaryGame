@@ -17,6 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 45fc75994e18339488dccf46e9d69524
   m_SerializeEntries:
+  - m_GUID: 2a4c3d1569f46ea44a4bd87113a3d857
+    m_Address: Stage01Story02.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30b781b5b0155ed4c99bfaa7d91df55e
     m_Address: koupenchanSurprise.PNG
     m_ReadOnly: 0
