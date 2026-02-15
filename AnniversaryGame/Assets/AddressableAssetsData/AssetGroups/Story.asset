@@ -37,11 +37,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c716ae30498d8ba43ace4a90df8bb9d2
-    m_Address: Stage01Story01.csv
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e2f1fd603f3ad2b41b514b293178b24d
     m_Address: koupenchamSmile.PNG
     m_ReadOnly: 0
