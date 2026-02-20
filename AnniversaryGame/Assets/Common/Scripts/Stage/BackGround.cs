@@ -13,7 +13,7 @@ public class BackGround : MonoBehaviour
     private float m_startCameraPosX;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_camera = Camera.main.gameObject;
         m_startBgPosX = transform.position.x;

@@ -121,6 +121,15 @@ public class TextWindow : MonoBehaviour
                         case GameUtility.Emotion.Surprise:
                             iconAddress = "koupenchanSurprise.PNG";
                             break;
+                        case GameUtility.Emotion.Angry:
+                            iconAddress = "koupenchanAngry.PNG";
+                            break;
+                        case GameUtility.Emotion.Grid:
+                            iconAddress = "koupenchanGrid.PNG";
+                            break;
+                        case GameUtility.Emotion.Sad:
+                            iconAddress = "koupenchanSad.PNG";
+                            break;
                         default: break;
                     }
                     Sprite ImageAsset = await AddressableAssetLoadUtility.LoadAssetAsync<Sprite>(iconAddress, token);

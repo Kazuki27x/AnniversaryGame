@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 2c171e5a9e3be93459e5b20244ea145d
   m_SerializeEntries:
-  - m_GUID: 960a989c7689fc54b8ac892e94173ef4
-    m_Address: shibaFront.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0de7bba93adf3c4b9ea2bd46208b381
     m_Address: KeyItemList
     m_ReadOnly: 0
