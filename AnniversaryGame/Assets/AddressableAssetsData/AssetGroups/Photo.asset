@@ -17,6 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 30bf3e0eaee1eab4da80196cd0bb07c5
   m_SerializeEntries:
+  - m_GUID: 01e087b22d197fa449a5fe8848ce9b3a
+    m_Address: IMG_1235.JPG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08cdd4e285adb0b4b968085127f787c2
+    m_Address: IMG_1207.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16c21bd81db7c2440898d95d16c5736f
     m_Address: IMG_0931_exported_17033.jpg
     m_ReadOnly: 0
@@ -52,6 +62,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87d29a9a061db2b4dbd8cbe836176e56
+    m_Address: IMG_1185.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 891a4c183111f9940b91f32052b30de8
+    m_Address: IMG_1232.JPG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aacf8999a6e7cf94b88ef79ec89e7c6a
     m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0847.png
     m_ReadOnly: 0
@@ -62,6 +82,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c40a029881164cf4dab082b6e9ef7b33
+    m_Address: IMG_1221.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbb7a55c516403d408b95b20ea0e4855
     m_Address: IMG_1135.png
     m_ReadOnly: 0
@@ -69,6 +94,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd6be722071ea8b43ae8f07eadf3b71c
     m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0867.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f29c697a0762e7746835968aac580c3b
+    m_Address: IMG_1204.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

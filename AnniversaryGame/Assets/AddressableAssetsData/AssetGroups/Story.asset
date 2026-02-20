@@ -17,6 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 45fc75994e18339488dccf46e9d69524
   m_SerializeEntries:
+  - m_GUID: 04ba99a7de91b7846a915d833cc6a4ec
+    m_Address: koupenchanGrid.PNG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 067de41bf0a1084478503e2bfadade1d
     m_Address: Stage01Story07.csv
     m_ReadOnly: 0
@@ -59,6 +64,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b68e21881dc3f54c8c94536a1dbafc2
     m_Address: Stage01Story04.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99e1af4e731f6ca4893f5c0acd825f39
+    m_Address: koupenchanSad.PNG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5087bc1e1cda2246a7a702977866afe
+    m_Address: koupenchanAngry.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
