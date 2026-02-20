@@ -26,7 +26,7 @@ public class Stage1Flow : BaseScene
         // 初回ストーリー開始
         if (m_isDispFirstStory)
         {
-            await StartTextWindow("Stage01Story00.csv", token);
+            await StartTextWindow(storyFileName, token);
         }
 
         // キー操作
