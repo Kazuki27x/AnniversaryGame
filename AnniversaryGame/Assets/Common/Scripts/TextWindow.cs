@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
 using System.Threading;
 using TMPro;
+using UniRx.Triggers;
 
 public class TextWindow : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class TextWindow : MonoBehaviour
     private float textSpeed = 0.1f;
 
     public bool m_nowPlay = false;
+    private bool m_nowFade = false;
 
     private List<TextContentData> m_textList = new List<TextContentData>();
     private string m_currentDispText = "";
@@ -30,6 +32,7 @@ public class TextWindow : MonoBehaviour
     private bool m_isFinishTextDisp = false;
     private float textDispTime = 0; // 経過時間に合わせて文字を表示するのに使用
 
+    private Animator animator;
     private InputAction _pushSkip;
 
     private CancellationToken m_token;
@@ -40,12 +43,37 @@ public class TextWindow : MonoBehaviour
         m_token = this.GetCancellationTokenOnDestroy();
         // スキップボタンの登録
         SetInputAction();
+        // アニメーションの制御の登録
+        animator = this.GetComponent<Animator>();
+        ObservableStateMachineTrigger trigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
+        trigger.OnStateExitAsObservable().Skip(1)
+            .Subscribe(onStateInfo =>
+        {
+            // ステート終了時に通る
+            AnimatorStateInfo info = onStateInfo.StateInfo;
+            if (info.IsName("Base Layer.FadeIn"))
+            {
+                // FadeIn終了
+                Debug.Log($"Exit FadeIn");
+                m_nowFade = false;
+            }
+            else if (info.IsName("Base Layer.FadeOut"))
+            {
+                // FadeOut終了
+                Debug.Log($"Exit FadeOut");
+                m_nowPlay = false;
+                m_nowFade = false;
+            }
+        }).AddTo(this);
+
+        // 初期化
+        m_mainText.text = "";
     }
 
     // Update is called once per frame
-    async void FixedUpdate()
+    void FixedUpdate()
     {
-        if (m_nowPlay)
+        if (m_nowPlay && !m_nowFade)
         {
             // テキスト表示が終了していない
             if (!m_isFinishTextDisp)
@@ -78,10 +106,11 @@ public class TextWindow : MonoBehaviour
 
     public async UniTask PlayTextWindow(CancellationToken token)
     {
+        this.GetComponent<Animator>().SetTrigger("FadeTrigger");
+        m_nowFade = true;
         m_nowPlay = true;
         m_currntIndex = 0;
         await SetTextContent(m_currntIndex, token);
-        this.gameObject.SetActive(true);
     }
 
     private async UniTask SetTextContent(int index, CancellationToken token)
@@ -181,7 +210,7 @@ public class TextWindow : MonoBehaviour
 
     public async void SkipText(InputAction.CallbackContext context)
     {
-        if (m_nowPlay && !m_isSkip)
+        if (m_nowPlay && !m_isSkip && !m_nowFade)
         {
             m_isSkip = true;
 
@@ -200,9 +229,9 @@ public class TextWindow : MonoBehaviour
                 if (m_currntIndex >= m_textList.Count)
                 {
                     // 終了
-                    m_nowPlay = false;
+                    this.GetComponent<Animator>().SetTrigger("FadeTrigger");
+                    m_nowFade = true;
                     m_currntIndex = 0;
-                    this.gameObject.SetActive(false);
                 }
                 else
                 {
