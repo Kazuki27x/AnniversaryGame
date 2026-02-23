@@ -29,8 +29,11 @@ public class Stage1Flow : BaseScene
             await StartTextWindow(storyFileName, token);
         }
 
-        // キー操作
+        // キー操作登録
         GameManager.Instance.SetInputSystemAllDisable();
         GameManager.Instance._InputControls.Player.Enable();
+
+        // Loading終了
+        await GameManager.Instance.m_ResidentFlow.LoadingFadeOut();
     }
 }

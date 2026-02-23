@@ -25,11 +25,6 @@ public abstract class BaseScene : MonoBehaviour
 
     protected abstract UniTask OnSceneReadyAsync(CancellationToken token);
 
-    protected void GotoNextScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
     // テキストウィンドウ
     public async UniTask StartTextWindow(string csvFileName, CancellationToken token)
     {

@@ -35,8 +35,8 @@ public class TitleFlow : BaseScene
         });
     }
 
-    private void PushStart(InputAction.CallbackContext ctx)
+    private async void PushStart(InputAction.CallbackContext ctx)
     {
-        GotoNextScene("Stage1");
+        await GameManager.Instance.m_ResidentFlow.GotoNextScene("Stage1");
     }
 }
