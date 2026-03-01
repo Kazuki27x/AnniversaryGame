@@ -118,7 +118,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5209bda16621cad4282b0c69c36de482
-    m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0860.png
+    m_Address: IMG_0860.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -188,12 +188,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aacf8999a6e7cf94b88ef79ec89e7c6a
-    m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0847.png
+    m_Address: IMG_0847.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: adf1df57eb83f1d42be9d5ff52c7ce5b
-    m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/Stage1Build1Photo1.png
+    m_Address: Stage1Build1Photo1.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd6be722071ea8b43ae8f07eadf3b71c
-    m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0867.png
+    m_Address: IMG_0867.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fcb9999d2272bb14a963ee3d3a5bd186
-    m_Address: Assets/Scenes/Stage1/Textures/Photo/Build1/IMG_0856.png
+    m_Address: IMG_0856.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
