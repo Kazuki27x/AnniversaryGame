@@ -7,7 +7,7 @@ public class BackGround : MonoBehaviour
     [SerializeField, Header("éãç∑å¯â "), Range(0, 1)]
     private float m_parallaxEffect;
 
-    private GameObject m_camera;
+    [SerializeField] private GameObject m_camera;
     private float m_bgOneLength;
     private float m_startBgPosX;
     private float m_startCameraPosX;
@@ -15,7 +15,6 @@ public class BackGround : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        m_camera = Camera.main.gameObject;
         m_startBgPosX = transform.position.x;
         if ((m_parallaxEffect < 1))
         {

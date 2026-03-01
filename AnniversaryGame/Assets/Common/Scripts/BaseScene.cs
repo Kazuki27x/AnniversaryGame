@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 
 public abstract class BaseScene : MonoBehaviour
 {
+    protected CancellationToken m_token;
 
     // Start is called before the first frame update
     private async UniTaskVoid Start()
     {
-        var token = this.GetCancellationTokenOnDestroy();
+        m_token = this.GetCancellationTokenOnDestroy();
         await InitializeAsync();
-        await OnSceneReadyAsync(token);
+        await OnSceneReadyAsync(m_token);
     }
 
     // 例：BGM マネージャーのセットアップ、UI の共通初期化など
@@ -24,11 +25,6 @@ public abstract class BaseScene : MonoBehaviour
     }
 
     protected abstract UniTask OnSceneReadyAsync(CancellationToken token);
-
-    protected void GotoNextScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
 
     // テキストウィンドウ
     public async UniTask StartTextWindow(string csvFileName, CancellationToken token)
