@@ -88,7 +88,25 @@ public class TextWindow : MonoBehaviour
                 }
                 else
                 {
-                    m_mainText.text = m_currentDispText.Substring(0, len);
+                    if (m_currentDispText.Contains("<br>") && m_currentDispText.Substring(0, len).Contains("<"))
+                    {
+                        while (true)
+                        {
+                            // <br>を表示する際は一気に進める
+                            len = Mathf.FloorToInt(textDispTime / textSpeed);
+                            if (!m_currentDispText.Substring(0, len).Contains("<br>"))
+                            {
+                                textDispTime += Time.deltaTime;
+                                continue;
+                            }
+                            break;
+                        }
+                        m_mainText.text = m_currentDispText.Substring(0, len);
+                    }
+                    else
+                    {
+                        m_mainText.text = m_currentDispText.Substring(0, len);
+                    }
                 }
             }
             // テキスト表示が終了している

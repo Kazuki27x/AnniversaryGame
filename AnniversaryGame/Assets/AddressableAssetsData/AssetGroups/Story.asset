@@ -57,11 +57,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4353f4061feee5f4c80de687861f6d9f
-    m_Address: Stage01Story14.csv
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b68e21881dc3f54c8c94536a1dbafc2
     m_Address: Stage01Story04.csv
     m_ReadOnly: 0

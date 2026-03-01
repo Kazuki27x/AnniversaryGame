@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         // èâä˙âª
         _InputControls = new InputControls();
         _InputControls.Enable();
+        _InputControls.UI.Enable();
         _CSVLoader = new CSVLoader();
         _KeyItemManager = new KeyItemManager();
 
@@ -70,8 +71,8 @@ public class GameManager : MonoBehaviour
 
     public void SetInputSystemAllDisable()
     {
-        GameManager.Instance._InputControls.Player.Disable();
-        GameManager.Instance._InputControls.TextWindow.Disable();
-        GameManager.Instance._InputControls.Title.Disable();
+        _InputControls.Player.Disable();
+        _InputControls.TextWindow.Disable();
+        _InputControls.Title.Disable();
     }
 }
