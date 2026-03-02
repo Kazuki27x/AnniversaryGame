@@ -25,6 +25,7 @@ public class ActorController : MonoBehaviour
     // 衝突情報
     private bool m_isInBuilding = false; // 建物内にいるか
     private Building m_inBuildingInfo;
+    private string m_nextSceneStr = "";
 
     CancellationToken m_token;
 
@@ -99,13 +100,21 @@ public class ActorController : MonoBehaviour
     /// 建物説明処理
     public async void ActionBuildEnterStart(InputAction.CallbackContext context)
     {
-        if (m_isInBuilding && m_inBuildingInfo != null)
+        if (m_isInBuilding)
         {
-            string storyCSVName = m_inBuildingInfo.storyFileName;
-            List<TextContentData> tmpList = new List<TextContentData>();
-            await m_scene.StartTextWindow(storyCSVName, m_token);
-            // 終了
-            m_inBuildingInfo.m_isFinishDisp = true;
+            if (m_inBuildingInfo != null)
+            {
+                string storyCSVName = m_inBuildingInfo.storyFileName;
+                List<TextContentData> tmpList = new List<TextContentData>();
+                await m_scene.StartTextWindow(storyCSVName, m_token);
+                // 終了
+                m_inBuildingInfo.m_isFinishDisp = true;
+            }
+            else if(m_nextSceneStr.Length != 0)
+            {
+                // シーン遷移
+                await GameManager.Instance.m_ResidentFlow.GotoNextScene(m_nextSceneStr);
+            }
             ResetBuildInfo();
         }
     }
@@ -123,10 +132,16 @@ public class ActorController : MonoBehaviour
                 m_isInBuilding = true;
             }
         }
+        else if(other.gameObject.tag.Equals("SceneMoveObj"))
+        {
+            // scene移動オブジェクト
+            m_isInBuilding = true;
+            m_nextSceneStr = other.gameObject.GetComponent<SceneMoveObj>().m_sceneName;
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Building"))
+        if (other.gameObject.tag.Equals("Building") || other.gameObject.tag.Equals("SceneMoveObj"))
         {
             // 建物の場合は情報リセット
             ResetBuildInfo();
@@ -136,6 +151,7 @@ public class ActorController : MonoBehaviour
     {
         m_isInBuilding = false;
         m_inBuildingInfo = null;
+        m_nextSceneStr = "";
     }
 
     // 未確認ストーリーの検知時ビックリマーク

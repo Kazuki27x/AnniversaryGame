@@ -6,7 +6,7 @@ using System.Threading;
 using UnityEngine.InputSystem;
 using UniRx;
 
-public class Stage1Flow : BaseScene
+public class Stage2Flow : BaseScene
 {
     [SerializeField] GameObject _player;
 
@@ -21,7 +21,7 @@ public class Stage1Flow : BaseScene
     protected override async UniTask OnSceneReadyAsync(CancellationToken token)
     {
         // ƒV[ƒ“‹N“®Žž‚Ìˆ—
-        GameManager.Instance.StageName = "Stage1";
+        GameManager.Instance.StageName = "Stage2";
 
         await UniTask.WaitUntil(() => GameManager.Instance.m_isInitializeResidentFlow);
 
