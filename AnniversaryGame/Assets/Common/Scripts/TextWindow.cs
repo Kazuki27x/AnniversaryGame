@@ -184,11 +184,25 @@ public class TextWindow : MonoBehaviour
                 }
                 break;
         }
-        // 写真があれば表示
-        if (m_textList[index].m_photoAddress.Equals("="))
+
+        // 写真の表示・非表示
+        if (m_textList[index].m_photoAddress.Equals(""))
+        {
+            // 画像非表示
+            m_photo.enabled = false;
+            m_photo.sprite = null;
+        }
+        else if (m_textList[index].m_photoAddress.Equals("="))
         {
             // 同じ画像を表示
-            m_photo.enabled = true;
+            if (m_photo.sprite == null)
+            {
+                m_photo.enabled = false;
+            }
+            else
+            {
+                m_photo.enabled = true;
+            }
         }
         else if (!m_textList[index].m_photoAddress.Equals(""))
         {
@@ -203,11 +217,6 @@ public class TextWindow : MonoBehaviour
                 Debug.Log($"指定したindexの写真addressはありません。index：{index},,m_photoAddress：{m_textList[index].m_photoAddress}");
                 m_photo.enabled = false;
             }
-        }
-        else
-        {
-            // 画像非表示
-            m_photo.enabled = false;
         }
     }
 

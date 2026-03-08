@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public KeyItemManager _KeyItemManager;
     // ResidentScene
     public ResidentFlow m_ResidentFlow { get; private set; }
+    public bool m_isInitializeResidentFlow = false;
 
     // シングルトン定義
     private static GameManager instance;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
         if (m_ResidentFlow == null)
         {
             m_ResidentFlow = flow;
+            m_isInitializeResidentFlow = true;
         }
     }
 

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Resident/ResidentScene.unity
     guid: 3957e27dab5985c44b71f4730e32bc9b
+  - enabled: 1
+    path: Assets/Scenes/Stage2/Stage2.unity
+    guid: 5e071b02af7a0924f9ab634cc4cb5a5b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5b4cbfb6d632f744ca2dcd447519ed34, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: ef6ab4b612a841148bee1aecd56edd04, type: 2}

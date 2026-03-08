@@ -37,8 +37,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a8ffbe07c8b8aa4085ae9663fa4f279
+    m_Address: Stage02Story02.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 21815c2d68e70854384aaf4b0e745669
     m_Address: Stage01Story06.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25b22d62fccda634981c67827777fb42
+    m_Address: Stage02Story04.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2840aa1c683253e408c55bf6677bce7c
+    m_Address: Stage02Story03.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -52,13 +67,48 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30e9e000ac63c5247b9e9d385d03953c
+    m_Address: Stage03Story00.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34e045b73ca8d004aa93e07c372a8c3b
+    m_Address: Stage03Story06.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 366e0cd7d81d29c4fa622c2478740538
     m_Address: koupenchanNormal.PNG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41ac4f8f905a6cb4c83ceb2d043858ef
+    m_Address: Stage03Story05.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4703b08896049e74594d34002f1612e7
+    m_Address: Stage03Story02.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59976bdf053795547bcc263365d5ce58
+    m_Address: Stage03Story04.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b68e21881dc3f54c8c94536a1dbafc2
     m_Address: Stage01Story04.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80ebe0b991ff011489359b726e6f5fe3
+    m_Address: Stage02Story05.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8939b7a02ba2ea9459181e86f6f6836a
+    m_Address: Stage02Story08.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -69,6 +119,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5087bc1e1cda2246a7a702977866afe
     m_Address: koupenchanAngry.PNG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1ab3fbbbbc3a6b409062fe64207882f
+    m_Address: Stage02Story07.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b725044215abf804fb59eb636732a1d7
+    m_Address: Stage02Story06.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -102,8 +162,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c21e6ebdb1365734b83dabde769c7915
+    m_Address: Stage03Story03.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c55152dc4d4e06e4f9037cb4f5fd79de
+    m_Address: Stage02Story09.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c716ae30498d8ba43ace4a90df8bb9d2
     m_Address: Stage01Story01.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e115b46a5243b234a9523aa512606969
+    m_Address: Stage03Story01.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -114,6 +189,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e626c6087bf90ae4988098eb00895067
     m_Address: Stage01Story05.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e949c0c29b20ffb4cbc1b422cb2fd432
+    m_Address: Stage02Story00.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2b034d014c4e124fb3a45c314d85183
+    m_Address: Stage02Story01.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

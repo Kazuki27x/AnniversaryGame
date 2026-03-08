@@ -23,6 +23,11 @@ public class Stage1Flow : BaseScene
         // シーン起動時の処理
         GameManager.Instance.StageName = "Stage1";
 
+        await UniTask.WaitUntil(() => GameManager.Instance.m_isInitializeResidentFlow);
+
+        // フェードアウト待ち
+        await GameManager.Instance.m_ResidentFlow.LoadingFadeOut();
+
         // 初回ストーリー開始
         if (m_isDispFirstStory)
         {
