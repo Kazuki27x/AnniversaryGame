@@ -15,6 +15,8 @@ public class ActorController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private bool m_isGoal = false;
+
     [Header("デバッグ用")]
     [SerializeField] bool m_isFastWalk = false;
 
@@ -118,7 +120,6 @@ public class ActorController : MonoBehaviour
             if (m_inBuildingInfo != null)
             {
                 string storyCSVName = m_inBuildingInfo.storyFileName;
-                List<TextContentData> tmpList = new List<TextContentData>();
                 await m_scene.StartTextWindow(storyCSVName, m_token);
                 // 終了
                 m_inBuildingInfo.m_isFinishDisp = true;
@@ -151,10 +152,23 @@ public class ActorController : MonoBehaviour
             m_isInBuilding = true;
             m_nextSceneStr = other.gameObject.GetComponent<SceneMoveObj>().m_sceneName;
         }
+        else if (other.gameObject.tag.Equals("Goal"))
+        {
+            // ゴールオブジェクト
+            if (!m_isGoal)
+            {
+                //触れた瞬間ゴール演出を開始する
+                m_isGoal = true;
+                StartGoalStory();
+            }
+
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Building") || other.gameObject.tag.Equals("SceneMoveObj"))
+        if (other.gameObject.tag.Equals("Building")
+            || other.gameObject.tag.Equals("SceneMoveObj")
+            || other.gameObject.tag.Equals("Goal"))
         {
             // 建物の場合は情報リセット
             ResetBuildInfo();
@@ -171,5 +185,15 @@ public class ActorController : MonoBehaviour
     private void DispMark(bool isDisp)
     {
         m_Manpu.SetActive(isDisp);
+    }
+
+    private async UniTask StartGoalStory()
+    {
+
+        string storyCSVName = "StoryGoal.csv";
+        await m_scene.StartTextWindow(storyCSVName, m_token);
+
+        // 終了したらホワイトアウトでシーン遷移
+        await GameManager.Instance.m_ResidentFlow.GotoNextScene("End", GameUtility.LoadFadeType.WhiteLoad);
     }
 }

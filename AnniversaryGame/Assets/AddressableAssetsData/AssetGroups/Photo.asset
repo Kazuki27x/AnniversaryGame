@@ -162,6 +162,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21233905c1201924e8ebc6e2bcfdddce
+    m_Address: Stage04Story03.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 21b68da3b8c92c248937b898de6e3137
     m_Address: 1723987515531.jpg
     m_ReadOnly: 0
@@ -229,6 +234,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 330966f850081704c9e04b461e23f0fb
     m_Address: 20250504_172134_exported_11640.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33cd4b2b28f875a4598de6171c93ceb0
+    m_Address: Stage04Story00.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -347,6 +357,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ad7fc469bd196444afda5bf35cc245f
+    m_Address: Stage04Story04.csv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b1f2ca6ec95afd47820753184952cfb
     m_Address: IMG_5036.JPG
     m_ReadOnly: 0
@@ -424,6 +439,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f9fcecc55586a64cb35baab31724741
     m_Address: 1722862549162.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ff7fa0d688508544b3e11ab5c92f945
+    m_Address: StoryGoal.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -579,6 +599,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d3bf02ec5cf7444fb8c66cae9ba6b11
     m_Address: IMG_5336.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dbaf2db1ada65d44ba62c3cf12175b3
+    m_Address: Stage04Story02.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -749,6 +774,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af32496b51770434da6f6fa747f24910
     m_Address: 20250504_162755.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4fc1ab7daf23c54e82a4a9b84ba344e
+    m_Address: Stage04Story01.csv
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

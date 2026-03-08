@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Building
   - SceneMoveObj
+  - Goal
   layers:
   - Default
   - TransparentFX

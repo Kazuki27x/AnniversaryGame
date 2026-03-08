@@ -10,6 +10,7 @@ public class TitleFlow : BaseScene
 {
     // キーアクション
     private InputAction _pushStart;
+    private bool m_isEndPush = false;
 
     protected override async UniTask OnSceneReadyAsync(CancellationToken token)
     {
@@ -17,8 +18,14 @@ public class TitleFlow : BaseScene
         /// 試しにステージ名を変更する
         GameManager.Instance.StageName = "StageTitle";
 
+        await UniTask.WaitUntil(() => GameManager.Instance.m_isInitializeResidentFlow);
+
         // キー操作登録
         GameManager.Instance.SetInputSystemAllDisable();
+
+        // フェードアウト待ち
+        await GameManager.Instance.m_ResidentFlow.LoadingFadeOut();
+
         GameManager.Instance._InputControls.Title.Enable();
         SetInputAction().AddTo(token);
     }
@@ -37,6 +44,10 @@ public class TitleFlow : BaseScene
 
     private async void PushStart(InputAction.CallbackContext ctx)
     {
-        await GameManager.Instance.m_ResidentFlow.GotoNextScene("Stage1");
+        if (!m_isEndPush)
+        {
+            m_isEndPush = true;
+            await GameManager.Instance.m_ResidentFlow.GotoNextScene("Stage1");
+        }
     }
 }

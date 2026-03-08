@@ -686,6 +686,54 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""End"",
+            ""id"": ""e41f09b9-a911-4c5e-8614-bea0b6e0993d"",
+            ""actions"": [
+                {
+                    ""name"": ""PushEnd"",
+                    ""type"": ""Button"",
+                    ""id"": ""482edec7-05e2-42f3-98e1-7852b63096f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PushWhiteEnd"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e1baff0-13ef-4e63-b787-f967ad93f188"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ceadd09a-2076-432f-9189-3f4e22127d97"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PushEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03829dbb-551f-4361-9f85-5e4367c2f80e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PushWhiteEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -712,6 +760,10 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // End
+        m_End = asset.FindActionMap("End", throwIfNotFound: true);
+        m_End_PushEnd = m_End.FindAction("PushEnd", throwIfNotFound: true);
+        m_End_PushWhiteEnd = m_End.FindAction("PushWhiteEnd", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -979,6 +1031,47 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // End
+    private readonly InputActionMap m_End;
+    private IEndActions m_EndActionsCallbackInterface;
+    private readonly InputAction m_End_PushEnd;
+    private readonly InputAction m_End_PushWhiteEnd;
+    public struct EndActions
+    {
+        private @InputControls m_Wrapper;
+        public EndActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PushEnd => m_Wrapper.m_End_PushEnd;
+        public InputAction @PushWhiteEnd => m_Wrapper.m_End_PushWhiteEnd;
+        public InputActionMap Get() { return m_Wrapper.m_End; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EndActions set) { return set.Get(); }
+        public void SetCallbacks(IEndActions instance)
+        {
+            if (m_Wrapper.m_EndActionsCallbackInterface != null)
+            {
+                @PushEnd.started -= m_Wrapper.m_EndActionsCallbackInterface.OnPushEnd;
+                @PushEnd.performed -= m_Wrapper.m_EndActionsCallbackInterface.OnPushEnd;
+                @PushEnd.canceled -= m_Wrapper.m_EndActionsCallbackInterface.OnPushEnd;
+                @PushWhiteEnd.started -= m_Wrapper.m_EndActionsCallbackInterface.OnPushWhiteEnd;
+                @PushWhiteEnd.performed -= m_Wrapper.m_EndActionsCallbackInterface.OnPushWhiteEnd;
+                @PushWhiteEnd.canceled -= m_Wrapper.m_EndActionsCallbackInterface.OnPushWhiteEnd;
+            }
+            m_Wrapper.m_EndActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PushEnd.started += instance.OnPushEnd;
+                @PushEnd.performed += instance.OnPushEnd;
+                @PushEnd.canceled += instance.OnPushEnd;
+                @PushWhiteEnd.started += instance.OnPushWhiteEnd;
+                @PushWhiteEnd.performed += instance.OnPushWhiteEnd;
+                @PushWhiteEnd.canceled += instance.OnPushWhiteEnd;
+            }
+        }
+    }
+    public EndActions @End => new EndActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -1004,5 +1097,10 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IEndActions
+    {
+        void OnPushEnd(InputAction.CallbackContext context);
+        void OnPushWhiteEnd(InputAction.CallbackContext context);
     }
 }
