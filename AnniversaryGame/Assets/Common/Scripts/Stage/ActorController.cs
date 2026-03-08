@@ -10,10 +10,13 @@ using System.Threading;
 public class ActorController : MonoBehaviour
 {
     [SerializeField] private BaseScene m_scene;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float m_speed = 3f;
     [SerializeField] private GameObject m_Manpu;
 
     private SpriteRenderer spriteRenderer;
+
+    [Header("デバッグ用")]
+    [SerializeField] bool m_isFastWalk = false;
 
     // キーアクション
     /// 移動処理
@@ -44,8 +47,18 @@ public class ActorController : MonoBehaviour
             }).AddTo(this);
     }
 
+    float speed;
     private void Update()
     {
+
+        if (m_isFastWalk)
+        {
+            speed = 10;
+        }
+        else
+        {
+            speed = m_speed;
+        }
         Vector3 move = new Vector3(moveInput.x, 0, 0);
         GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * speed * Time.fixedDeltaTime);
     }
