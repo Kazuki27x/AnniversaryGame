@@ -47,7 +47,8 @@ public class SoundManager : MonoBehaviour
         if (clip != null)
         {
             Debug.Log($"PlayBGM {clip.name}");
-            m_bgmAudioSource.PlayOneShot(clip);
+            m_bgmAudioSource.clip = clip;
+            m_bgmAudioSource.Play();
         }
     }
 
