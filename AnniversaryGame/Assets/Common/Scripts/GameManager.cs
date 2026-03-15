@@ -76,5 +76,6 @@ public class GameManager : MonoBehaviour
         _InputControls.Player.Disable();
         _InputControls.TextWindow.Disable();
         _InputControls.Title.Disable();
+        _InputControls.End.Disable();
     }
 }

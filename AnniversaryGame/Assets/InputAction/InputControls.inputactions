@@ -664,6 +664,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "End",
+            "id": "e41f09b9-a911-4c5e-8614-bea0b6e0993d",
+            "actions": [
+                {
+                    "name": "PushEnd",
+                    "type": "Button",
+                    "id": "482edec7-05e2-42f3-98e1-7852b63096f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PushWhiteEnd",
+                    "type": "Button",
+                    "id": "5e1baff0-13ef-4e63-b787-f967ad93f188",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ceadd09a-2076-432f-9189-3f4e22127d97",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03829dbb-551f-4361-9f85-5e4367c2f80e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushWhiteEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

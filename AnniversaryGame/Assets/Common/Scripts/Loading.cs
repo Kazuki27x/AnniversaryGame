@@ -17,18 +17,28 @@ public class Loading : MonoBehaviour
     private int m_loadCountNumber = 0;
     private float m_currentMS;
 
+    ObservableStateMachineTrigger m_animatorTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = this.GetComponent<Animator>();
         // AnimìÆçÏìoò^
-        ObservableStateMachineTrigger trigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
-        trigger.OnStateEnterAsObservable().Skip(1)
+        SetAnimator();
+    }
+
+    private void SetAnimator()
+    {
+
+        m_animatorTrigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
+        m_animatorTrigger.OnStateEnterAsObservable().Skip(1)
             .Subscribe(onStateInfo =>
             {
                 AnimatorStateInfo stateInfo = onStateInfo.StateInfo;
                 // ÉtÉFÅ[ÉhèIóπ
-                if (stateInfo.IsName("Base Layer.Loading1") || stateInfo.IsName("Base Layer.Loading2"))
+                if (stateInfo.IsName("Base Layer.Loading")
+                 || stateInfo.IsName("Base Layer.Loading1")
+                 || stateInfo.IsName("Base Layer.Loading2"))
                 {
                     m_isFade = false;
                 }
@@ -38,6 +48,7 @@ public class Loading : MonoBehaviour
                     if (this.gameObject.activeSelf)
                     {
                         this.gameObject.SetActive(false);
+                        m_isLoading = false;
                     }
                 }
             }).AddTo(this);
@@ -45,18 +56,26 @@ public class Loading : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_currentMS += Time.deltaTime;
-        if (m_currentMS > 1)
+        if (m_animatorTrigger == null)
         {
-            m_currentMS = 0;
-            m_loadCountNumber++;
-            if (m_loadCountNumber > 3){ m_loadCountNumber = 0; }
-            switch (m_loadCountNumber)
+            // ÉVÅ[ÉìëJà⁄Ç∑ÇÈÇ∆êÿÇÍÇÈÅHÇÃÇ≈çƒìoò^
+            SetAnimator();
+        }
+        if (m_loadingText != null)
+        {
+            m_currentMS += Time.deltaTime;
+            if (m_currentMS > 1)
             {
-                case 0: m_loadingText.text = "Loading"; break;
-                case 1: m_loadingText.text = "Loading."; break;
-                case 2: m_loadingText.text = "Loading.."; break;
-                case 3: m_loadingText.text = "Loading..."; break;
+                m_currentMS = 0;
+                m_loadCountNumber++;
+                if (m_loadCountNumber > 3) { m_loadCountNumber = 0; }
+                switch (m_loadCountNumber)
+                {
+                    case 0: m_loadingText.text = "Loading"; break;
+                    case 1: m_loadingText.text = "Loading."; break;
+                    case 2: m_loadingText.text = "Loading.."; break;
+                    case 3: m_loadingText.text = "Loading..."; break;
+                }
             }
         }
     }
@@ -69,6 +88,7 @@ public class Loading : MonoBehaviour
         }
         this.gameObject.SetActive(true);
         this.GetComponent<Animator>().SetTrigger("FadeTrigger");
+        m_isLoading = true;
         m_isFade = true;
     }
 

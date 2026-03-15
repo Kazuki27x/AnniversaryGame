@@ -10,10 +10,15 @@ using System.Threading;
 public class ActorController : MonoBehaviour
 {
     [SerializeField] private BaseScene m_scene;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float m_speed = 3f;
     [SerializeField] private GameObject m_Manpu;
 
     private SpriteRenderer spriteRenderer;
+
+    private bool m_isGoal = false;
+
+    [Header("デバッグ用")]
+    [SerializeField] bool m_isFastWalk = false;
 
     // キーアクション
     /// 移動処理
@@ -44,8 +49,18 @@ public class ActorController : MonoBehaviour
             }).AddTo(this);
     }
 
+    float speed;
     private void Update()
     {
+
+        if (m_isFastWalk)
+        {
+            speed = 10;
+        }
+        else
+        {
+            speed = m_speed;
+        }
         Vector3 move = new Vector3(moveInput.x, 0, 0);
         GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * speed * Time.fixedDeltaTime);
     }
@@ -104,8 +119,10 @@ public class ActorController : MonoBehaviour
         {
             if (m_inBuildingInfo != null)
             {
+                // SE
+                GameManager.Instance.m_ResidentFlow.m_soundManager.PlaySE(SoundManager.SE_TYPE.SELECT);
+
                 string storyCSVName = m_inBuildingInfo.storyFileName;
-                List<TextContentData> tmpList = new List<TextContentData>();
                 await m_scene.StartTextWindow(storyCSVName, m_token);
                 // 終了
                 m_inBuildingInfo.m_isFinishDisp = true;
@@ -138,10 +155,23 @@ public class ActorController : MonoBehaviour
             m_isInBuilding = true;
             m_nextSceneStr = other.gameObject.GetComponent<SceneMoveObj>().m_sceneName;
         }
+        else if (other.gameObject.tag.Equals("Goal"))
+        {
+            // ゴールオブジェクト
+            if (!m_isGoal)
+            {
+                //触れた瞬間ゴール演出を開始する
+                m_isGoal = true;
+                StartGoalStory().Forget();
+            }
+
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Building") || other.gameObject.tag.Equals("SceneMoveObj"))
+        if (other.gameObject.tag.Equals("Building")
+            || other.gameObject.tag.Equals("SceneMoveObj")
+            || other.gameObject.tag.Equals("Goal"))
         {
             // 建物の場合は情報リセット
             ResetBuildInfo();
@@ -158,5 +188,18 @@ public class ActorController : MonoBehaviour
     private void DispMark(bool isDisp)
     {
         m_Manpu.SetActive(isDisp);
+    }
+
+    private async UniTask StartGoalStory()
+    {
+
+        string storyCSVName = "StoryGoal.csv";
+        await m_scene.StartTextWindow(storyCSVName, m_token);
+
+        // BGMを止める
+        await GameManager.Instance.m_ResidentFlow.m_soundManager.StopBGM(true);
+
+        // 終了したらホワイトアウトでシーン遷移
+        await GameManager.Instance.m_ResidentFlow.GotoNextScene("End", GameUtility.LoadFadeType.WhiteLoad);
     }
 }

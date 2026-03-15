@@ -12,6 +12,11 @@ public static class GameUtility
 
     public const string NAME_RESIDENT_SCENE = "ResidentScene";
 
+    public enum LoadFadeType
+    {
+        OyasumiLoad = 0,
+        WhiteLoad,
+    }
     public enum Stage
     {
         Stage0 = 0,

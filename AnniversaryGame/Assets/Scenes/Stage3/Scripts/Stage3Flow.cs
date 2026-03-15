@@ -25,6 +25,9 @@ public class Stage3Flow : BaseScene
 
         await UniTask.WaitUntil(() => GameManager.Instance.m_isInitializeResidentFlow);
 
+        // BGM
+        GameManager.Instance.m_ResidentFlow.m_soundManager.PlayBGM(SoundManager.BGM_TYPE.STAGE);
+
         // フェードアウト待ち
         await GameManager.Instance.m_ResidentFlow.LoadingFadeOut();
 

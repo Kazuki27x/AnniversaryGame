@@ -244,6 +244,8 @@ public class TextWindow : MonoBehaviour
             // テキスト表示が終了していない
             if (!m_isFinishTextDisp)
             {
+                // SE
+                GameManager.Instance.m_ResidentFlow.m_soundManager.PlaySE(SoundManager.SE_TYPE.TEXT);
                 // 一気に表示
                 m_mainText.text = m_currentDispText;
                 m_isFinishTextDisp = true;
@@ -262,6 +264,8 @@ public class TextWindow : MonoBehaviour
                 }
                 else
                 {
+                    // SE
+                    GameManager.Instance.m_ResidentFlow.m_soundManager.PlaySE(SoundManager.SE_TYPE.TEXT);
                     // 次のテキストに進む
                     await SetTextContent(m_currntIndex, m_token);
                 }

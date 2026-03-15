@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using DG;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 
 public class BackGroundManager : MonoBehaviour
 {
@@ -89,16 +91,30 @@ public class BackGroundManager : MonoBehaviour
         }
     }
 
-    private void ToWinter(bool isIn)
+    private async UniTask ToWinter(bool isIn)
     {
         Debug.Log("ToWinter");
-        m_Snow.SetActive(isIn);
+        if (isIn)
+        {
+            m_Snow.GetComponent<ParticlUpdate>().StartEffect();
+        }
+        else
+        {
+            m_Snow.GetComponent<ParticlUpdate>().StopEffect();
+        }
     }
 
-    private void ToSpring(bool isIn)
+    private async UniTask ToSpring(bool isIn)
     {
         Debug.Log("ToSpring");
-        m_Sakura.SetActive(isIn);
+        if (isIn)
+        {
+            m_Sakura.GetComponent<ParticlUpdate>().StartEffect();
+        }
+        else
+        {
+            m_Sakura.GetComponent<ParticlUpdate>().StopEffect();
+        }
     }
 
     private void ToSummer(bool isIn)
@@ -130,8 +146,10 @@ public class BackGroundManager : MonoBehaviour
         {
             sprite.color = Color.white;
         }
-        m_Snow.SetActive(false);
-        m_Sakura.SetActive(false);
+        m_Snow.GetComponent<ParticlUpdate>().StopEffect();
+        m_Snow.GetComponent<ParticlUpdate>().ClearEffect();
+        m_Sakura.GetComponent<ParticlUpdate>().StopEffect();
+        m_Sakura.GetComponent<ParticlUpdate>().ClearEffect();
         foreach (SpriteRenderer sprite in m_Sun.GetComponentsInChildren<SpriteRenderer>())
         {
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
