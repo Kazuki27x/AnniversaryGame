@@ -23,6 +23,9 @@ public class TitleFlow : BaseScene
         // キー操作登録
         GameManager.Instance.SetInputSystemAllDisable();
 
+        // BGM 再生
+        GameManager.Instance.m_ResidentFlow.m_soundManager.PlayBGM(SoundManager.BGM_TYPE.TITLE);
+
         // フェードアウト待ち
         await GameManager.Instance.m_ResidentFlow.LoadingFadeOut();
 
@@ -46,6 +49,9 @@ public class TitleFlow : BaseScene
     {
         if (!m_isEndPush)
         {
+            // SE
+            GameManager.Instance.m_ResidentFlow.m_soundManager.PlaySE(SoundManager.SE_TYPE.TITLE_PUSH);
+
             m_isEndPush = true;
             await GameManager.Instance.m_ResidentFlow.GotoNextScene("Stage1");
         }

@@ -119,6 +119,9 @@ public class ActorController : MonoBehaviour
         {
             if (m_inBuildingInfo != null)
             {
+                // SE
+                GameManager.Instance.m_ResidentFlow.m_soundManager.PlaySE(SoundManager.SE_TYPE.SELECT);
+
                 string storyCSVName = m_inBuildingInfo.storyFileName;
                 await m_scene.StartTextWindow(storyCSVName, m_token);
                 // èIóπ

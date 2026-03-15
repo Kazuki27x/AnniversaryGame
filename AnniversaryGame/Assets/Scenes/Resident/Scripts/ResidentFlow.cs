@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class ResidentFlow : BaseScene
 {
+    [SerializeField] public SoundManager m_soundManager;
+
     [SerializeField] private TextWindow m_textWindow;
 
     [SerializeField] private Loading m_loadingOyasumi;
@@ -54,6 +56,9 @@ public class ResidentFlow : BaseScene
                 loadingTime = 6;
                 break;
         }
+        // SE
+        GameManager.Instance.m_ResidentFlow.m_soundManager.PlaySE(SoundManager.SE_TYPE.MOVE_STAGE);
+
         m_currentLoadingObj.StartFadeIn();
         await UniTask.WaitUntil(() => !m_currentLoadingObj.m_isFade);
         await UniTask.Delay(System.TimeSpan.FromSeconds(loadingTime));
