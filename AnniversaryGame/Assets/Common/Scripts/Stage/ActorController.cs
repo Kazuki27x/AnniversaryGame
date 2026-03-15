@@ -162,7 +162,7 @@ public class ActorController : MonoBehaviour
             {
                 //触れた瞬間ゴール演出を開始する
                 m_isGoal = true;
-                StartGoalStory();
+                StartGoalStory().Forget();
             }
 
         }
@@ -195,6 +195,9 @@ public class ActorController : MonoBehaviour
 
         string storyCSVName = "StoryGoal.csv";
         await m_scene.StartTextWindow(storyCSVName, m_token);
+
+        // BGMを止める
+        await GameManager.Instance.m_ResidentFlow.m_soundManager.StopBGM(true);
 
         // 終了したらホワイトアウトでシーン遷移
         await GameManager.Instance.m_ResidentFlow.GotoNextScene("End", GameUtility.LoadFadeType.WhiteLoad);

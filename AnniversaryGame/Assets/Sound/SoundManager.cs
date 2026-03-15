@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 
 public class SoundManager : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip SE_TEXT;
     [SerializeField] private AudioClip SE_MOVE_STAGE;
 
+    private static readonly float DEFAULT_BGM_VOLUME = 0.3f;
+
     public enum BGM_TYPE
     {
         TITLE,
@@ -32,7 +36,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(BGM_TYPE type)
     {
-        StopBGM();
+        StopBGM().Forget();
 
         AudioClip clip = null;
         switch (type)
@@ -48,12 +52,22 @@ public class SoundManager : MonoBehaviour
         {
             Debug.Log($"PlayBGM {clip.name}");
             m_bgmAudioSource.clip = clip;
+            m_bgmAudioSource.volume = DEFAULT_BGM_VOLUME;
             m_bgmAudioSource.Play();
         }
     }
 
-    public void StopBGM()
+    public async UniTask StopBGM(bool isFade = false)
     {
+        if (isFade)
+        {
+            var tcs = new UniTaskCompletionSource();
+            DG.Tweening.DOVirtual.Float(DEFAULT_BGM_VOLUME, 0, 1, value =>
+            {
+                m_bgmAudioSource.volume = value;
+            }).OnComplete(() => tcs.TrySetResult());
+            await tcs.Task;
+        }
         m_bgmAudioSource.Stop();
     }
 
