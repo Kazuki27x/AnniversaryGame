@@ -8,6 +8,8 @@ using UniRx;
 
 public class TitleFlow : BaseScene
 {
+    [SerializeField] private Animator m_camvasAnimator;
+
     // キーアクション
     private InputAction _pushStart;
     private bool m_isEndPush = false;
@@ -28,6 +30,9 @@ public class TitleFlow : BaseScene
 
         // フェードアウト待ち
         await GameManager.Instance.m_ResidentFlow.LoadingFadeOut();
+
+        // アニメーション開始
+        m_camvasAnimator.SetTrigger("FadeTrigger");
 
         GameManager.Instance._InputControls.Title.Enable();
         SetInputAction().AddTo(token);
