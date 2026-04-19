@@ -17,12 +17,11 @@ public class ActorController : MonoBehaviour
 
     private bool m_isGoal = false;
 
-    [Header("デバッグ用")]
-    [SerializeField] bool m_isFastWalk = false;
-
     // キーアクション
     /// 移動処理
     private InputAction _pushMove;
+    private InputAction _pushNormal;
+    private InputAction _pushFast;
     private Vector2 moveInput;
     /// 建物説明処理
     private InputAction _pushBuildEnter;
@@ -31,6 +30,8 @@ public class ActorController : MonoBehaviour
     private bool m_isInBuilding = false; // 建物内にいるか
     private Building m_inBuildingInfo;
     private string m_nextSceneStr = "";
+    private bool m_isMove = false;
+    private bool m_isFast = false;
 
     CancellationToken m_token;
 
@@ -52,26 +53,34 @@ public class ActorController : MonoBehaviour
     float speed;
     private void Update()
     {
-
-        if (m_isFastWalk)
+        if (m_isMove)
         {
-            speed = 10;
+            if (m_isFast)
+            {
+                speed = 10;
+            }
+            else
+            {
+                speed = m_speed;
+            }
+            Vector3 move = new Vector3(moveInput.x, 0, 0);
+            GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * speed * Time.fixedDeltaTime);
         }
-        else
-        {
-            speed = m_speed;
-        }
-        Vector3 move = new Vector3(moveInput.x, 0, 0);
-        GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * speed * Time.fixedDeltaTime);
     }
 
     private System.IDisposable SetInputAction()
     {
         // 移動処理
         {
-            _pushMove = GameManager.Instance._InputControls.Player.Move;
+            _pushMove = GameManager.Instance._InputControls.Player.Move; // 移動量検知用
+            _pushNormal = GameManager.Instance._InputControls.Player.NormalTap; // 画面タッチ中か（タッチ中は移動）
+            _pushFast = GameManager.Instance._InputControls.Player.Fast; // 早歩きか
             _pushMove.started += ActionMovePerformed;
-            _pushMove.canceled += ActionStopCanceled;
+            _pushMove.canceled += ActionStopVector2Canceled;
+            _pushNormal.started += ActionNormalImputPerformed;
+            _pushNormal.canceled += ActionStopMoveCanceled;
+            _pushFast.started += ActionFastPerformed;
+            _pushFast.canceled += ActionStopFastCanceled;
         }
         // 建物説明開始処理
         {
@@ -81,7 +90,11 @@ public class ActorController : MonoBehaviour
         return Disposable.Create(() =>
         {
             _pushMove.started -= ActionMovePerformed;
-            _pushMove.canceled -= ActionStopCanceled;
+            _pushMove.canceled -= ActionStopVector2Canceled;
+            _pushNormal.started -= ActionNormalImputPerformed;
+            _pushNormal.canceled -= ActionStopMoveCanceled;
+            _pushFast.started -= ActionFastPerformed;
+            _pushFast.canceled -= ActionStopFastCanceled;
             _pushBuildEnter.started -= ActionBuildEnterStart;
         });
     }
@@ -91,26 +104,55 @@ public class ActorController : MonoBehaviour
     /// 移動処理
     public void ActionMovePerformed(InputAction.CallbackContext context)
     {
-        // Walk
-        this.GetComponent<Animator>().SetBool("IsWalk", true);
-
         moveInput = context.ReadValue<Vector2>();
+
+        if (moveInput.x < 0.3f && -0.3f < moveInput.x)
+        {
+            return;
+        }
+
         if (moveInput.x > 0)
         {
             // スプライトを通常の向きで表示
+            moveInput.x = 1;
             spriteRenderer.flipX = false;
         }
         else
         {
             // スプライトを通常の逆向きで表示
+            moveInput.x = -1;
             spriteRenderer.flipX = true;
         }
     }
-    public void ActionStopCanceled(InputAction.CallbackContext context)
+    public void ActionNormalImputPerformed(InputAction.CallbackContext context)
+    {
+        // Walk
+        this.GetComponent<Animator>().SetBool("IsWalk", true);
+        m_isMove = true;
+    }
+    public void ActionFastPerformed(InputAction.CallbackContext context)
+    {
+        // Walk
+        this.GetComponent<Animator>().SetBool("IsWalk", true);
+        m_isFast = true;
+    }
+    public void ActionStopVector2Canceled(InputAction.CallbackContext context)
+    {
+        // Wait
+        //moveInput = Vector2.zero;
+        //moveInput.x = 0;
+    }
+    public void ActionStopMoveCanceled(InputAction.CallbackContext context)
     {
         // Wait
         this.GetComponent<Animator>().SetBool("IsWalk", false);
         moveInput = Vector2.zero;
+        moveInput.x = 0;
+        m_isMove = false;
+    }
+    public void ActionStopFastCanceled(InputAction.CallbackContext context)
+    {
+        m_isFast = false;
     }
     /// 建物説明処理
     public async void ActionBuildEnterStart(InputAction.CallbackContext context)

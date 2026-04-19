@@ -95,7 +95,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Button"",
                     ""id"": ""8fd997f8-5d5b-4cf0-8a29-0e16b5a8b6fa"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -104,7 +104,25 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""BuildEnter"",
                     ""type"": ""Button"",
                     ""id"": ""bd3d3e9a-dc23-4150-b5ed-7ab79b46c1f8"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NormalTap"",
+                    ""type"": ""Button"",
+                    ""id"": ""09add489-1a8c-42dd-baf7-71bb7ab6d977"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fast"",
+                    ""type"": ""Button"",
+                    ""id"": ""4163ebec-afe3-4858-98fc-02aba9b14e2b"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -145,6 +163,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""42b6fe0c-96fc-4548-95eb-8670f8f2bbb1"",
+                    ""path"": ""<Pointer>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""down"",
                     ""id"": ""6f78e8cb-7356-47ef-b0e7-ba66d49364d6"",
                     ""path"": ""<Keyboard>/s"",
@@ -159,6 +188,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""down"",
                     ""id"": ""5ef872e1-89a0-4ee8-baa3-fb2934999ae3"",
                     ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""17eae7e1-0dee-44b8-975f-2d08b136523a"",
+                    ""path"": ""<Pointer>/delta/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -200,6 +240,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""left"",
+                    ""id"": ""0d624a7f-f0f7-43ad-9d6d-fdac358f9d18"",
+                    ""path"": ""<Pointer>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""right"",
                     ""id"": ""38051ced-041e-4fc9-ae88-17300c163bed"",
                     ""path"": ""<Keyboard>/d"",
@@ -233,6 +284,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""right"",
+                    ""id"": ""32ddd8d6-a563-4426-8499-76e2c7352031"",
+                    ""path"": ""<Pointer>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""8fe5703f-2f92-4f08-9a40-574b525cc524"",
                     ""path"": ""<Keyboard>/enter"",
@@ -253,6 +315,83 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""BuildEnter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c8888d1-db6a-4249-b9ef-207cdeea5b09"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BuildEnter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8cb2120-8c9c-4cb7-b30e-fb12c7fd6b0c"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4dc9811a-8879-4038-b91a-2fe25176738a"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd583775-c7d6-4ddf-a63a-dede47be5a21"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03dd9b25-838d-4b13-b7fb-71efe919779f"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d16eba6b-01ff-4642-9426-555ebdc7850f"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae4c4940-e21c-4501-a055-8145253b5f56"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -264,7 +403,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""Skip"",
                     ""type"": ""Button"",
                     ""id"": ""075110f3-33b1-4def-9069-c4bb789ddffb"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -292,6 +431,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f12d9e93-1013-4ff7-8201-af34c8e55d87"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -303,7 +453,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""PushStart"",
                     ""type"": ""Button"",
                     ""id"": ""5dccdf11-a490-4b81-b22d-45bd61df4e7a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
@@ -325,6 +475,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""4401ae6f-f848-4d65-99a5-d82a0c8ad6d3"",
                     ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PushStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c82c3dab-d8ea-490a-a037-11e5003da0a0"",
+                    ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -858,7 +1019,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""PushEnd"",
                     ""type"": ""Button"",
                     ""id"": ""482edec7-05e2-42f3-98e1-7852b63096f0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -867,7 +1028,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""PushWhiteEnd"",
                     ""type"": ""Button"",
                     ""id"": ""5e1baff0-13ef-4e63-b787-f967ad93f188"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -898,6 +1059,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2a8bdfaf-9a2d-4492-9b77-ad3fc07f3e07"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PushEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""03829dbb-551f-4361-9f85-5e4367c2f80e"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -917,6 +1089,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""PushWhiteEnd"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29edb768-545e-4abc-a535-b5bd2c5b71a0"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PushWhiteEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -927,6 +1110,8 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_BuildEnter = m_Player.FindAction("BuildEnter", throwIfNotFound: true);
+        m_Player_NormalTap = m_Player.FindAction("NormalTap", throwIfNotFound: true);
+        m_Player_Fast = m_Player.FindAction("Fast", throwIfNotFound: true);
         // TextWindow
         m_TextWindow = asset.FindActionMap("TextWindow", throwIfNotFound: true);
         m_TextWindow_Skip = m_TextWindow.FindAction("Skip", throwIfNotFound: true);
@@ -1035,6 +1220,8 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_BuildEnter;
+    private readonly InputAction m_Player_NormalTap;
+    private readonly InputAction m_Player_Fast;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1054,6 +1241,14 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/BuildEnter".
         /// </summary>
         public InputAction @BuildEnter => m_Wrapper.m_Player_BuildEnter;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NormalTap".
+        /// </summary>
+        public InputAction @NormalTap => m_Wrapper.m_Player_NormalTap;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Fast".
+        /// </summary>
+        public InputAction @Fast => m_Wrapper.m_Player_Fast;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1086,6 +1281,12 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @BuildEnter.started += instance.OnBuildEnter;
             @BuildEnter.performed += instance.OnBuildEnter;
             @BuildEnter.canceled += instance.OnBuildEnter;
+            @NormalTap.started += instance.OnNormalTap;
+            @NormalTap.performed += instance.OnNormalTap;
+            @NormalTap.canceled += instance.OnNormalTap;
+            @Fast.started += instance.OnFast;
+            @Fast.performed += instance.OnFast;
+            @Fast.canceled += instance.OnFast;
         }
 
         /// <summary>
@@ -1103,6 +1304,12 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @BuildEnter.started -= instance.OnBuildEnter;
             @BuildEnter.performed -= instance.OnBuildEnter;
             @BuildEnter.canceled -= instance.OnBuildEnter;
+            @NormalTap.started -= instance.OnNormalTap;
+            @NormalTap.performed -= instance.OnNormalTap;
+            @NormalTap.canceled -= instance.OnNormalTap;
+            @Fast.started -= instance.OnFast;
+            @Fast.performed -= instance.OnFast;
+            @Fast.canceled -= instance.OnFast;
         }
 
         /// <summary>
@@ -1651,6 +1858,20 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBuildEnter(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NormalTap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNormalTap(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Fast" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFast(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TextWindow" which allows adding and removing callbacks.
