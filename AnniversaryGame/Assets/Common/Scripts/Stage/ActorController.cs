@@ -31,7 +31,8 @@ public class ActorController : MonoBehaviour
     private Building m_inBuildingInfo;
     private string m_nextSceneStr = "";
     private bool m_isMove = false;
-    private bool m_isFast = false;
+    private bool m_isNormalMove = false;
+    private bool m_isFastMove = false;
 
     CancellationToken m_token;
 
@@ -55,16 +56,8 @@ public class ActorController : MonoBehaviour
     {
         if (m_isMove)
         {
-            if (m_isFast)
-            {
-                speed = 10;
-            }
-            else
-            {
-                speed = m_speed;
-            }
             Vector3 move = new Vector3(moveInput.x, 0, 0);
-            GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * speed * Time.fixedDeltaTime);
+            GetComponent<Rigidbody2D>().MovePosition(this.transform.position + move * m_speed * Time.fixedDeltaTime);
         }
     }
 
@@ -106,21 +99,41 @@ public class ActorController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
 
-        if (moveInput.x < 0.3f && -0.3f < moveInput.x)
+        int moveParam = 1;
+        const float NotMoveBoundaryParam = 10.0f;
+        const float NormalMoveBoundaryParam = 40.0f;
+
+        /*
+        if (!m_isNormalMove  && !m_isFastMove &&
+            -NotMoveBoundaryParam < moveInput.x && moveInput.x < NotMoveBoundaryParam)
         {
-            return;
+            moveParam = 0;
+        }
+        else 
+        */
+        if (!m_isFastMove  &&
+            -NormalMoveBoundaryParam < moveInput.x && moveInput.x < NormalMoveBoundaryParam)
+        {
+            moveParam = 1;
+            m_isNormalMove = true;
+        }
+        else
+        {
+            // 早歩き
+            moveParam = 2;
+            m_isFastMove = true;
         }
 
         if (moveInput.x > 0)
         {
             // スプライトを通常の向きで表示
-            moveInput.x = 1;
+            moveInput.x = moveParam;
             spriteRenderer.flipX = false;
         }
         else
         {
             // スプライトを通常の逆向きで表示
-            moveInput.x = -1;
+            moveInput.x = moveParam  * - 1;
             spriteRenderer.flipX = true;
         }
     }
@@ -134,7 +147,7 @@ public class ActorController : MonoBehaviour
     {
         // Walk
         this.GetComponent<Animator>().SetBool("IsWalk", true);
-        m_isFast = true;
+        m_isFastMove = true;
     }
     public void ActionStopVector2Canceled(InputAction.CallbackContext context)
     {
@@ -149,10 +162,12 @@ public class ActorController : MonoBehaviour
         moveInput = Vector2.zero;
         moveInput.x = 0;
         m_isMove = false;
+        m_isFastMove = false;
+        m_isNormalMove = false;
     }
     public void ActionStopFastCanceled(InputAction.CallbackContext context)
     {
-        m_isFast = false;
+        m_isFastMove = false;
     }
     /// 建物説明処理
     public async void ActionBuildEnterStart(InputAction.CallbackContext context)
