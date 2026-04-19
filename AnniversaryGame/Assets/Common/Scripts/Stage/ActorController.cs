@@ -101,7 +101,7 @@ public class ActorController : MonoBehaviour
 
         int moveParam = 1;
         const float NotMoveBoundaryParam = 10.0f;
-        const float NormalMoveBoundaryParam = 40.0f;
+        const float NormalMoveBoundaryParam = 100.0f;
 
         /*
         if (!m_isNormalMove  && !m_isFastMove &&
