@@ -33,6 +33,7 @@ public class ResidentFlow : BaseScene
         // シーン起動時の処理
         m_loadingOyasumi.gameObject.SetActive(false);
         m_loadingWhiteOut.gameObject.SetActive(false);
+
         m_currentLoadingObj = m_loadingOyasumi; // 一旦おやすみローディングを入れておく
     }
 
